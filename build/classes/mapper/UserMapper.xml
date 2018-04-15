@@ -7,10 +7,13 @@
     <id column="id" property="id" jdbcType="VARCHAR" />  
     <result column="username" property="username" jdbcType="VARCHAR" />  
   </resultMap>  
+  
+  <select id="selectUserBylogin" parameterType="map" resultMap="UserMap">
+  SELECT* FROM user WHERE user_name = #{user_name} AND password = #{password}
+  </select>
     
   <insert id="insertUser" parameterType="model.User" useGeneratedKeys="true" keyProperty="id" >  
-   insert into user(user_id, user_name) values(#{user_id},#{user_name})
+   INSERT INTO user VALUES(#{id}, #{name}, 0, #{yelping_since}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, #{user_name},#{user_name})
   </insert>   
-  
     
 </mapper>

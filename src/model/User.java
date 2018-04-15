@@ -1,15 +1,36 @@
 package model;
 
+import java.sql.Timestamp;
+
 public class User {
-	private int user_id;
+	private String id;
+	private String name;
+	private Timestamp yelping_since;
 	private String user_name;
+	private String password;
 	
-	public int getUser_id(){
-		return this.user_id;
+	public String getID(){
+		return this.id;
 	}
 	
-	public void setUser_id(int user_id){
-		this.user_id = user_id;
+	public void setID(String id){
+		this.id = id;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public Timestamp getYelping_since(){
+		return this.yelping_since;
+	}
+	
+	public void setYelping_since(Timestamp yelping_since){
+		this.yelping_since = yelping_since;
 	}
 	
 	public String getUser_name(){
@@ -18,6 +39,14 @@ public class User {
 	
 	public void setUser_name(String user_name){
 		this.user_name = user_name;
+	}
+	
+	public String getPassword(){
+		return this.password;
+	}
+	
+	public void setPassword(String password){
+		this.password = password;
 	}
 	
 }

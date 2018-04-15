@@ -19,7 +19,12 @@ public class UserServiceImpl implements UserService {
     }
 	
 	@Override
-	public void addUser(User user){
-		userDao.insertUser(user);
+	public User login(String user_name, String password){
+		return userDao.selectUserBylogin(user_name, password);
+	}
+	
+	@Override
+	public int register(User user){
+		return userDao.insertUser(user);
 	}
 }

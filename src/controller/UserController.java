@@ -1,9 +1,8 @@
 package controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.User;
@@ -20,17 +19,26 @@ public class UserController {
         this.userService = userService;  
     }
     
-    @SuppressWarnings("finally")
-    @RequestMapping("addUser")  
-    public void addUser(User user,HttpServletRequest request){  
-        try {
-        	user.setUser_id(003);
-            System.out.println(user.getUser_id() + ":::::" + user.getUser_name());  
-            userService.addUser(user);  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        } finally {
-        	
-        }  
+    @RequestMapping("login")
+    public String login(String user_name, String password){
+    	try{
+    		User loginUser = userService.login(user_name, password);
+    		if(loginUser != null){
+    			return "index";
+    		} else{
+    			return "index";
+    		}
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	return "index";
+    }
+    
+    @RequestMapping("register")
+    public String register(@RequestBody User user){
+    	if(userService.register(user) == 1){
+    		return "index";
+    	}
+    	return "index";
     }
 }
