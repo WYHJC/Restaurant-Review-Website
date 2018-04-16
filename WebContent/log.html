@@ -71,8 +71,9 @@ function login(){
 		data: JSON.stringify(v),
 		success: function(data){
 			if(data != ''){
-				window.location.href=result+'/index.html';
 				setCookie('user_id', data.id, 1);
+				window.location.href=result+'/index.html';
+
 			}else{
 				alert("该用户不存在！");
 				window.location.href=result+'/log.html';
