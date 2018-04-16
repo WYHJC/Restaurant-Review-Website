@@ -41,6 +41,41 @@
 </head>
 
 <body>
+
+<script type="text/javascript">
+$.fn.serializeObject = function()    
+{    
+   var o = {};    
+   var a = this.serializeArray();    
+   $.each(a, function() {    
+       if (o[this.name]) {    
+           if (!o[this.name].push) {    
+               o[this.name] = [o[this.name]];    
+           }    
+           o[this.name].push(this.value || '');    
+       } else {    
+           o[this.name] = this.value || '';    
+       }    
+   });    
+   return o;    
+};  
+
+function register(){
+	var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    var result = pathName.substr(0,index+1);
+	$.ajax({
+		type: "POST",
+		url: result + "/register.do",
+		contentType: "application/json",
+		data:
+		success: function(data){
+			
+		}
+	});
+}
+</script>
+
 <div class="page">
     <!--========================================================
                               HEADER
@@ -92,12 +127,11 @@
                 </ul>
             </nav>            
         </div>
-
+</div>
     </header>
     <!--========================================================
                               CONTENT
     =========================================================-->
-    <main>
     
    <div class="contact">
 		<div class="container">
@@ -116,45 +150,45 @@
 			<div class="col-md-8 contact-left wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms">
 				<h4>注册账号</h4>
 				<form>
-					<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-					<input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-					<input type="text" value="Telephone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone';}" required="">
+					<input type="text" value="ID" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'ID';}" required="">
+					<input name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+					<input name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
 <br />
 <br />
 <br />
 <br />
 					<ul>
 					<li><h4>喜好口味</h4></li>
-					<li><input type="checkbox" name="checkbox1" value="checkbox"> 无辣不欢
-					<input type="checkbox" name="checkbox2" value="checkbox"> 素食主义
-					<input type="checkbox" name="checkbox3" value="checkbox"> 不能没有肉
-					<input type="checkbox" name="checkbox17" value="checkbox"> 吃辣会哭
-					<input type="checkbox" name="checkbox26" value="checkbox"> 咖喱狂热者
-					<input type="checkbox" name="checkbox4" value="checkbox"> 我爱芝士<br> </li>
-							<li><input type="checkbox" name="checkbox5" value="checkbox"> 川菜
-					<input type="checkbox" name="checkbox6" value="checkbox"> 粤菜	 
-					<input type="checkbox" name="checkbox7" value="checkbox"> 鲁菜
-					<input type="checkbox" name="checkbox18" value="checkbox"> 苏菜 
-					<input type="checkbox" name="checkbox27" value="checkbox"> 浙菜 
-					<input type="checkbox" name="checkbox8" value="checkbox"> 闽菜<br> </li>
-							<li><input type="checkbox" name="checkbox9" value="checkbox"> 徽菜 
-					<input type="checkbox" name="checkbox10" value="checkbox"> 湘菜
-					<input type="checkbox" name="checkbox11" value="checkbox"> 快餐 
-					<input type="checkbox" name="checkbox19" value="checkbox"> 西餐 
-					<input type="checkbox" name="checkbox28" value="checkbox"> 中餐
-					<input type="checkbox" name="checkbox12" value="checkbox"> 异国风情<br> </li>
-							<li><input type="checkbox" name="checkbox13" value="checkbox"> 自助小王子 
-					<input type="checkbox" name="checkbox14" value="checkbox"> 日料
-					<input type="checkbox" name="checkbox15" value="checkbox"> 韩料 
-					<input type="checkbox" name="checkbox20" value="checkbox"> 拍照
-					<input type="checkbox" name="checkbox29" value="checkbox"> 聚餐 
-					<input type="checkbox" name="checkbox16" value="checkbox"> 面试<br> </li>
-					<li><input type="checkbox" name="checkbox21" value="checkbox"> 火锅 
-					<input type="checkbox" name="checkbox22" value="checkbox"> 烧烤 
-					<input type="checkbox" name="checkbox23" value="checkbox"> 清淡 
-					<input type="checkbox" name="checkbox24" value="checkbox"> 炒菜
-					<input type="checkbox" name="checkbox30" value="checkbox"> 炖汤 
-					<input type="checkbox" name="checkbox25" value="checkbox"> 炸串<br> </li>
+					<li><input type="checkbox" name="checkbox" value="无辣不欢"> 无辣不欢
+					<input type="checkbox" name="checkbox" value="素食主义"> 素食主义
+					<input type="checkbox" name="checkbox" value="不能没有肉"> 不能没有肉
+					<input type="checkbox" name="checkbox" value="吃辣会哭"> 吃辣会哭
+					<input type="checkbox" name="checkbox" value="咖喱狂热者"> 咖喱狂热者
+					<input type="checkbox" name="checkbox" value="我爱芝士"> 我爱芝士<br> </li>
+							<li><input type="checkbox" name="checkbox" value="川菜"> 川菜
+					<input type="checkbox" name="checkbox" value="粤菜"> 粤菜	 
+					<input type="checkbox" name="checkbox" value="鲁菜"> 鲁菜
+					<input type="checkbox" name="checkbox" value="苏菜"> 苏菜 
+					<input type="checkbox" name="checkbox" value="浙菜"> 浙菜 
+					<input type="checkbox" name="checkbox" value="闽菜"> 闽菜<br> </li>
+							<li><input type="checkbox" name="checkbox" value="徽菜"> 徽菜 
+					<input type="checkbox" name="checkbox" value="湘菜"> 湘菜
+					<input type="checkbox" name="checkbox" value="快餐"> 快餐 
+					<input type="checkbox" name="checkbox" value="西餐"> 西餐 
+					<input type="checkbox" name="checkbox" value="中餐"> 中餐
+					<input type="checkbox" name="checkbox" value="异国风情"> 异国风情<br> </li>
+							<li><input type="checkbox" name="checkbox" value="自助小王子"> 自助小王子 
+					<input type="checkbox" name="checkbox" value="日料"> 日料
+					<input type="checkbox" name="checkbox" value="韩料"> 韩料 
+					<input type="checkbox" name="checkbox" value="拍照"> 拍照
+					<input type="checkbox" name="checkbox" value="聚餐"> 聚餐 
+					<input type="checkbox" name="checkbox" value="面食"> 面食<br> </li>
+					<li><input type="checkbox" name="checkbox" value="火锅"> 火锅 
+					<input type="checkbox" name="checkbox" value="烧烤"> 烧烤 
+					<input type="checkbox" name="checkbox" value="清淡"> 清淡 
+					<input type="checkbox" name="checkbox" value="炒菜"> 炒菜
+					<input type="checkbox" name="checkbox" value="炖汤"> 炖汤 
+					<input type="checkbox" name="checkbox" value="炸串"> 炸串<br> </li>
 					
 </ul>
 <br />
@@ -167,7 +201,6 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-    </main>
 
     <!--========================================================
                               FOOTER

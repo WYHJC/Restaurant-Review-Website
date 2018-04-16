@@ -1,9 +1,12 @@
 package controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.User;
 import service.UserService;
@@ -20,18 +23,11 @@ public class UserController {
     }
     
     @RequestMapping("login")
-    public String login(String user_name, String password){
-    	try{
-    		User loginUser = userService.login(user_name, password);
-    		if(loginUser != null){
-    			return "index";
-    		} else{
-    			return "index";
-    		}
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
-    	return "index";
+    @ResponseBody
+    public User login(@RequestBody Map<String, String> data){
+    	System.out.println(data.get("user_name")+data.get("password"));
+    	User loginUser = userService.login(data.get("user_name"), data.get("password"));
+    	return loginUser;
     }
     
     @RequestMapping("register")

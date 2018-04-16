@@ -33,6 +33,54 @@
 </head>
 
 <body>
+<script type="text/javascript">
+function setCookie(c_name,value,expiredays)
+{
+	var exdate=new Date();
+	exdate.setDate(exdate.getDate()+expiredays);
+	document.cookie=c_name+ "=" +escape(value)+
+((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+}
+
+$.fn.serializeObject = function()    
+{    
+   var o = {};    
+   var a = this.serializeArray();    
+   $.each(a, function() {    
+       if (o[this.name]) {    
+           if (!o[this.name].push) {    
+               o[this.name] = [o[this.name]];    
+           }    
+           o[this.name].push(this.value || '');    
+       } else {    
+           o[this.name] = this.value || '';    
+       }    
+   });    
+   return o;    
+};  
+
+function login(){
+	var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    var result = pathName.substr(0,index+1);
+    var v = $("#form1").serializeObject();
+	$.ajax({
+		type: "POST",
+		url: result + "/login.do",
+		contentType: "application/json",
+		data: JSON.stringify(v),
+		success: function(data){
+			if(data != ''){
+				window.location.href=result+'/index.html';
+				setCookie('user_id', data.id, 1);
+			}else{
+				alert("该用户不存在！");
+				window.location.href=result+'/log.html';
+			}
+		}
+	});
+}
+</script>
 <div class="page">
     <!--========================================================
                               HEADER
@@ -84,29 +132,28 @@
                 </ul>
             </nav>            
         </div>
+        </div>
 
     </header>
     <!--========================================================
                               CONTENT
     =========================================================-->
-    <main>
-
 		<div class="container demo-1">
 			<div class="content">
 				<div id="large-header" class="large-header">
 					<canvas id="demo-canvas"></canvas>
 					<div class="logo_box">
 						<h3>欢迎你</h3>
-						<form action="#" name="f" method="post">
+						<form action="" id="form1" method="post">
 							<div class="input_outer">
 								<span class="u_user"></span>
-								<input name="logname" class="text" style="color: #FFFF !important" type="text" placeholder="请输入账户">
+								<input name="user_name" class="text" style="color: black" type="text" placeholder="请输入账户">
 							</div>
 							<div class="input_outer">
 								<span class="us_uer"></span>
-								<input name="logpass" class="text" style="color: #FFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+								<input name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
 							</div>
-							<div class="mb2"><a class="act-but submit" href="javascript:;" style="color: #FFFFFF">登录</a></div>
+							<div class="mb2"><a class="act-but submit" href="javascript:;" style="color: #FFFFFF" onclick="login()">登录</a></div>
 						</form>
 					</div>
 				</div>
@@ -118,8 +165,6 @@
 		<script src="flog/js/rAF.js"></script>
 		<script src="flog/js/demo-1.js"></script>
 		<div style="text-align:center;">
-    </main>
-
     <!--========================================================
                               FOOTER
     =========================================================-->
@@ -136,6 +181,7 @@
         </div>
         <div class="tm"><a href="#"><img src="images/TM_logo.png" alt=""></a></div>
     </footer>
+</div>
 </div>
 
 <script src="js/script.js"></script>
