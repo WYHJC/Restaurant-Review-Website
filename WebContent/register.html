@@ -2,30 +2,22 @@
 <html lang="en">
 
 <head>
-    <title>InformationR</title>
+    <title>Menu</title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no"/>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/style.css"><base>
+    
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
 
-
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Custom Theme files -->
-<link href="finf/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="finf/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- js -->
-<script src="finf/js/jquery-1.11.1.min.js"></script>
-<!-- //js -->
-<!-- animation-effect -->
-<link href="finf/css/animate.min.css" rel="stylesheet"> 
-<script src="finf/js/wow.min.js"></script>
-<script>
- new WOW().init();
-</script>
+<!-- <link rel="stylesheet" type="text/css" href="flog/css/normalize.css" /> -->
+<link rel="stylesheet" type="text/css" href="flog/css/demo.css" />
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="flog/css/component.css" />
+<!--[if IE]>
+<script src="js/html5.js"></script>
     <!--[if lt IE 9]>
     <html class="lt-ie9">
     <div style=' clear: both; text-align:center; position: relative;'>
@@ -41,7 +33,6 @@
 </head>
 
 <body>
-
 <script type="text/javascript">
 $.fn.serializeObject = function()    
 {    
@@ -58,29 +49,41 @@ $.fn.serializeObject = function()
        }    
    });    
    return o;    
-};  
+};
 
 function register(){
 	var pathName = document.location.pathname;
     var index = pathName.substr(1).indexOf("/");
     var result = pathName.substr(0,index+1);
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var map = {email: document.getElementById("email").value, password: document.getElementById("password").value};
 	$.ajax({
 		type: "POST",
 		url: result + "/register.do",
 		contentType: "application/json",
-		data:
+		data: JSON.stringify(map),
+		dataType: "json",
 		success: function(data){
-			
+			alert(data.regMsg);
+			if(data.regMsg == 'succeed'){
+				alert("邮件已发送，请尽快验证！");
+				window.location.href=result+'/index.html';
+			}else{
+				alert("邮件发送失败，请稍后重试！");
+			}
+		},
+		error:function(data){  
+			alert(data.regMsg);
 		}
 	});
 }
 </script>
-
 <div class="page">
     <!--========================================================
                               HEADER
     =========================================================-->
-    <header>
+  <header>
 
         <div id="stuck_container" class="stuck_container">
             <div class="container">
@@ -98,7 +101,7 @@ function register(){
                     <li >
                         <a href="./">首页</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="register.html">注册</a>
                     </li>
                     <li>
@@ -119,7 +122,7 @@ function register(){
                             </ul>
                     </li>
                     <li>
-                         <a href="connect_fuser.html">联系我们</a>
+                          <a href="connect_fuser.html">联系我们</a>
                     </li>
                     <li>
                         <a href="#">餐厅搜索</a>
@@ -127,38 +130,36 @@ function register(){
                 </ul>
             </nav>            
         </div>
-</div>
+        </div>
+
     </header>
     <!--========================================================
                               CONTENT
     =========================================================-->
-    
-   <div class="contact">
-		<div class="container">
-			
-			<div class="col-md-4 contact-left wow fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">
-				<h4>注册须知</h4>
-				<h2>///
-					<span>。。。</span></h2>
-				<ul>
-					<li>1</li>
-					<li>2</li>
-					<li>3</li>
-					<li>4</li>
-				</ul>
-			</div>
-			<div class="col-md-8 contact-left wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms">
-				<h4>注册账号</h4>
-				<form>
-					<input type="text" value="ID" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'ID';}" required="">
-					<input name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
-					<input name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
-<br />
-<br />
-<br />
-<br />
+		<div class="container demo-1">
+			<div class="content">
+				<div id="large-header" class="large-header">
+	
+					<div class="logo_box">
+						
+						<form action="" id="fromRegister" >
+							<div class="input_outer">
+								<span class="u_user"></span>
+								<input id="email" name="email" class="text" style="color: black" type="email" placeholder="请输入邮箱">
+							</div>
+							<div class="input_outer">
+								<span class="us_uer"></span>
+								<input id="password" name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+							</div>
+								<div class="input_outer">
+								<span class="us_uer"></span>
+								<input name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="请重复密码">
+							</div>
+							
 					<ul>
-					<li><h4>喜好口味</h4></li>
+					<font color="black" size = "4"><li>喜好口味</li></font>
+					<font color="black">
+
 					<li><input type="checkbox" name="checkbox" value="无辣不欢"> 无辣不欢
 					<input type="checkbox" name="checkbox" value="素食主义"> 素食主义
 					<input type="checkbox" name="checkbox" value="不能没有肉"> 不能没有肉
@@ -191,17 +192,20 @@ function register(){
 					<input type="checkbox" name="checkbox" value="炸串"> 炸串<br> </li>
 					
 </ul>
-<br />
-<br />
 
-				<input type="submit" value="Submit" >
-
-				</form>
+</font>
+							<div class="mb2"><a class="act-but submit" style="color: #FFFFFF" onclick="register()">注册</a></div>
+						</form>
+					</div>
+				</div>
 			</div>
-			<div class="clearfix"> </div>
 		</div>
-	</div>
 
+		<script src="flog/js/TweenLite.min.js"></script>
+		<script src="flog/js/EasePack.min.js"></script>
+		<script src="flog/js/rAF.js"></script>
+		<script src="flog/js/demo-1.js"></script>
+	
     <!--========================================================
                               FOOTER
     =========================================================-->

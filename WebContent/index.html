@@ -94,6 +94,7 @@
 
     </header>
 <script>
+var uid = getCookie("user_id");
 function setCookie(c_name,value,expiredays)
 {
 	var exdate=new Date();
@@ -133,13 +134,51 @@ dl.style.display = "";
 grxx.style.display = "none";
 zx.style.display = "none";
 
-if(getCookie("user_id")!=""){
+
+$(document).ready(function(){
+	var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    var result = pathName.substr(0,index+1);
+
+	var theUrl="",theData = "";
+	if(uid!="")
+		{
+		theUrl = result + "/findRecoByUser.do";
+		theData = "uid="+ uid;
+		}
+	else{
+		theUrl = result + "/findGeneralReco.do";
+		theData="";
+	}
+	
+    $.ajax({
+		type: "GET",
+		url: theUrl,
+		contentType: "application/json",
+		data: theData,
+		success: function(data){
+			
+			for(var i= 1;i<data.length;i++ ){
+				$("#recoList"+i).attr("href","displayBusinessInfo.do?id="+data[i-1].id);
+				$("#recoList"+i).children(".gallery_overlay").children(".gallery_caption").children(".voidName").children("em").text(data[i-1].name);
+				$("#recoList"+i).children(".gallery_overlay").children(".gallery_caption").children(".voidInfo").text(data[i-1].address);
+				
+			}
+			
+		}
+	});
+	
+	
+});
+
+$(document).ready(function(){ 
+if(uid!=""){
 	dl.style.display = "none";
 	grxx.style.display = "";
 	zx.style.display = "";
 
 }else{
-}
+}});
 
 </script>
     <!--========================================================
@@ -162,90 +201,90 @@ if(getCookie("user_id")!=""){
                 <div class="decoration"><a href="#" class="btn">Read more</a></div>
                 <h2><em>这写</em>更多推荐</h2>
             </div>            
-            <div class="gallery">
+            <div class="gallery" id="recoList">
                 <div class="gallery_col-1">
-                    <a data-fancybox-group="gallery" href="./infofR.html" class="gallery_item thumb lazy-img" style="padding-bottom: 93.96551724137931%;">
+                    <a id="recoList1" data-fancybox-group="gallery" href="displayBusinessInfo.do?id=" class="gallery_item thumb lazy-img" style="padding-bottom: 93.96551724137931%;">
                         <img data-src="images/page-1_img03.jpg" alt="">
                         <div class="gallery_overlay">
                             <div class="gallery_caption">
-                                <p><em>这写餐厅名</em></p>
-                                <p>餐厅信息</p>
+                                <p class="voidName" ><em>这写餐厅名</em></p>
+                                <p class = "voidInfo">餐厅信息</p>
                             </div>
                         </div>
                     </a>
-                    <a data-fancybox-group="gallery" href="images/page-1_img04_original.jpg" class="gallery_item thumb lazy-img" style="padding-bottom: 74.13793103448276%;">
+                    <a id="recoList2" data-fancybox-group="gallery" href="displayBusinessInfo.do?id=" class="gallery_item thumb lazy-img" style="padding-bottom: 74.13793103448276%;">
                         <img data-src="images/page-1_img04.jpg" alt="">
                         <div class="gallery_overlay">
                             <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
+                               <p class="voidName" ><em>这写餐厅名</em></p>
+                                <p class = "voidInfo">餐厅信息</p>                          
+                                </div>
                         </div>
                     </a>
-                    <a data-fancybox-group="gallery" href="images/page-1_img05_original.jpg" class="gallery_item thumb lazy-img" style="padding-bottom: 94.6551724137931%;">
+                    <a id="recoList3" data-fancybox-group="gallery" href="displayBusinessInfo.do?id=" class="gallery_item thumb lazy-img" style="padding-bottom: 94.6551724137931%;">
                         <img data-src="images/page-1_img05.jpg" alt="">
                         <div class="gallery_overlay">
                             <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
+                                <p class="voidName" ><em>这写餐厅名</em></p>
+                                <p class = "voidInfo">餐厅信息</p>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="gallery_col-2">
-                    <a data-fancybox-group="gallery" href="images/page-1_img06_original.jpg" class="gallery_item thumb lazy-img" style="padding-bottom: 52.48322147651007%;">
+                    <a id="recoList4" data-fancybox-group="gallery" href="displayBusinessInfo.do?id=" class="gallery_item thumb lazy-img" style="padding-bottom: 52.48322147651007%;">
                         <img data-src="images/page-1_img06.jpg" alt="">
                         <div class="gallery_overlay">
                             <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
+                                <p class="voidName" ><em>这写餐厅名</em></p>
+                                <p class = "voidInfo">餐厅信息</p>
                             </div>
                         </div>
                     </a>
-                    <a data-fancybox-group="gallery" href="images/page-1_img07_original.jpg" class="gallery_item thumb lazy-img" style="padding-bottom: 55.97315436241611%;">
+                    <a id="recoList5" data-fancybox-group="gallery" href="displayBusinessInfo.do?id=" class="gallery_item thumb lazy-img" style="padding-bottom: 55.97315436241611%;">
                         <img data-src="images/page-1_img07.jpg" alt="">
                         <div class="gallery_overlay">
                             <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
+                                <p class="voidName" ><em>这写餐厅名</em></p>
+                                <p class = "voidInfo">餐厅信息</p>
                             </div>
                         </div>
                     </a>
-                    <a data-fancybox-group="gallery" href="images/page-1_img08_original.jpg" class="gallery_item thumb lazy-img" style="padding-bottom: 96.10738255033557%;">
+                    <a id="recoList6" data-fancybox-group="gallery" href="displayBusinessInfo.do?id=" class="gallery_item thumb lazy-img" style="padding-bottom: 96.10738255033557%;">
                         <img data-src="images/page-1_img08.jpg" alt="">
                         <div class="gallery_overlay">
                             <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
+                              <p class="voidName" ><em>这写餐厅名</em></p>
+                                <p class = "voidInfo">餐厅信息</p>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="gallery_col-3">
-                    <a data-fancybox-group="gallery" href="images/page-1_img09_original.jpg" class="gallery_item thumb lazy-img" style="padding-bottom: 93.69676320272572%;">
+                    <a id="recoList7" data-fancybox-group="gallery" href="displayBusinessInfo.do?id=" class="gallery_item thumb lazy-img" style="padding-bottom: 93.69676320272572%;">
                         <img data-src="images/page-1_img09.jpg" alt="">
                         <div class="gallery_overlay">
                             <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
+                              <p class="voidName" ><em>这写餐厅名</em></p>
+                                <p class = "voidInfo">餐厅信息</p>
                             </div>
                         </div>
                     </a>
-                    <a data-fancybox-group="gallery" href="images/page-1_img10_original.jpg" class="gallery_item thumb lazy-img" style="padding-bottom: 72.23168654173765%;">
+                    <a id="recoList8" data-fancybox-group="gallery" href="displayBusinessInfo.do?id=" class="gallery_item thumb lazy-img" style="padding-bottom: 72.23168654173765%;">
                         <img data-src="images/page-1_img10.jpg" alt="">
                         <div class="gallery_overlay">
                             <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
+                                <p class="voidName" ><em>这写餐厅名</em></p>
+                                <p class = "voidInfo">餐厅信息</p>
                             </div>
                         </div>
                     </a>
-                    <a data-fancybox-group="gallery" href="images/page-1_img11_original.jpg" class="gallery_item thumb lazy-img" style="padding-bottom: 93.69676320272572%;">
+                    <a id="recoList9" data-fancybox-group="gallery" href="displayBusinessInfo.do?id=" class="gallery_item thumb lazy-img" style="padding-bottom: 93.69676320272572%;">
                         <img data-src="images/page-1_img11.jpg" alt="">
                         <div class="gallery_overlay">
                             <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
+                              <p class="voidName" ><em>这写餐厅名</em></p>
+                                <p class = "voidInfo">餐厅信息</p>
                             </div>
                         </div>
                     </a>
@@ -265,7 +304,7 @@ if(getCookie("user_id")!=""){
                 <div class="row row__offset-1">
                     <div class="grid_4">
                         <figure>
-                            <div class="img lazy-img" style="padding-bottom: 101.0810810810811%;"><img data-src="images/page-1_img12.jpg" alt=""></div>
+                            <div class="img lazy-img" style="padding-bottom: 101.0810810810811%;"><img data-src="" alt=""></div>
                             <figcaption>宋</figcaption>
                         </figure>
                         <h3>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl </h3>
@@ -273,7 +312,7 @@ if(getCookie("user_id")!=""){
                     </div>
                     <div class="grid_4">
                         <figure>
-                            <div class="img lazy-img" style="padding-bottom: 101.0810810810811%;"><img data-src="images/page-1_img13.jpg" alt=""></div>
+                            <div class="img lazy-img" style="padding-bottom: 101.0810810810811%;"><img data-src="" alt=""></div>
                             <figcaption>王</figcaption>
                         </figure>
                         <h3>Oeteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl </h3>
@@ -281,7 +320,7 @@ if(getCookie("user_id")!=""){
                     </div>
                     <div class="grid_4">
                         <figure>
-                            <div class="img lazy-img" style="padding-bottom: 101.0810810810811%;"><img data-src="images/page-1_img14.jpg" alt=""></div>
+                            <div class="img lazy-img" style="padding-bottom: 101.0810810810811%;"><img data-src="" alt=""></div>
                             <figcaption>刘</figcaption>
                         </figure>
                         <h3>Koteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl </h3>

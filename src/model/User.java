@@ -6,7 +6,7 @@ public class User {
 	private String id;
 	private String name;
 	private Timestamp yelping_since;
-	private String user_name;
+	private String email;
 	private String password;
 	
 	public String getID(){
@@ -33,12 +33,12 @@ public class User {
 		this.yelping_since = yelping_since;
 	}
 	
-	public String getUser_name(){
-		return this.user_name;
+	public String getEmail(){
+		return this.email;
 	}
 	
-	public void setUser_name(String user_name){
-		this.user_name = user_name;
+	public void setEmail(String email){
+		this.email = email;
 	}
 	
 	public String getPassword(){

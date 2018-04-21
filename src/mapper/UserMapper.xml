@@ -3,17 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
   
 <mapper namespace="dao.UserDao" >  
-  <resultMap id="UserMap" type="model.User" >  
-    <id column="id" property="id" jdbcType="VARCHAR" />  
-    <result column="username" property="username" jdbcType="VARCHAR" />  
-  </resultMap>  
-  
   <select id="selectUserBylogin" parameterType="map" resultType="model.User">
-  SELECT* FROM user WHERE user_name = #{user_name} AND password = #{password}
+  SELECT* FROM user WHERE email = #{email} AND password = #{password};
   </select>
     
   <insert id="insertUser" parameterType="model.User" useGeneratedKeys="true" keyProperty="id" >  
-   INSERT INTO user VALUES(#{id}, #{name}, 0, #{yelping_since}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, #{user_name},#{user_name})
+   INSERT INTO user VALUES('', '', 0, '2018-12-31 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, #{email},#{password});
   </insert>   
     
 </mapper>

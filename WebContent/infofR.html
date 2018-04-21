@@ -41,6 +41,22 @@
 </head>
 
 <body>
+
+<script type="text/javascript">
+<!-- 正则表达式提取存储的json字符串 -->
+function GetQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r!=null) return unescape(r[2]); return null;
+	}
+
+$(document).ready(function(){
+	//将json字符串转为json对象
+	var data = JSON.parse(GetQueryString("businessInfo"));
+	document.getElementById("business_name").innerText=data.name;
+});
+</script>
+
 <div class="page">
     <!--========================================================
                               HEADER
@@ -92,13 +108,12 @@
                 </ul>
             </nav>            
         </div>
+        </div>
 
     </header>
     <!--========================================================
                               CONTENT
-    =========================================================-->
-    <main>
-    
+    =========================================================-->    
     <!-- single -->
 	<div class="single">
 	<div class="container">
@@ -108,7 +123,7 @@
 			<img src="images/page-1_img01.jpg" alt=" " class="img-responsive" />
 		</div>
 		<div class="single-right wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
-			<h2>餐厅名称</h2>
+			<h2 id="business_name">餐厅名称</h2>
 			<p><span>描述</span>
 			<span>There are many variations of passages of Lorem Ipsum available,
 			but the majority have suffered alteration in some form, by injected humour,
@@ -304,7 +319,6 @@
                 <h2><em>Special menu </em>for Special Event</h2>
             </div>
         </section> -->
-    </main>
 
     <!--========================================================
                               FOOTER

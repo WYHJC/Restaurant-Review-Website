@@ -19,12 +19,12 @@ public class UserServiceImpl implements UserService {
     }
 	
 	@Override
-	public User login(String user_name, String password){
-		return userDao.selectUserBylogin(user_name, password);
+	public User login(String email, String password){
+		return userDao.selectUserBylogin(email, password);
 	}
 	
 	@Override
-	public int register(User user){
-		return userDao.insertUser(user);
+	public int register(String email, String password){
+		return userDao.insertUser(email, password);
 	}
 }

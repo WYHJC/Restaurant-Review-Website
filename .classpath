@@ -34,9 +34,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-3.2.16.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-3.2.16.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjweaver-1.8.13.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.5.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.5.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.5.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjweaver-1.8.13.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -8,4 +8,18 @@
     <result column="username" property="username" jdbcType="VARCHAR" />  
   </resultMap>  
   
+  <select id="selectBusinessByID" resultType="model.Business">
+  SELECT id, name, address, city, stars, review_count, is_open FROM business WHERE id = #{id};
+  </select>
+  
+  <select id="selectRecoBusinessByUser" parameterType="String"  resultType="model.Business">  
+  select id,name,address,city,stars,review_count,is_open from business where id in
+(select business_id from business_tag where tag_id in 
+(select tag_id from user_tag where user_id = #{id}))
+order by stars desc limit 10;
+  </select>  
+  <select id="selectGeneralRecoBusiness" resultType="model.Business">
+  select id,name,address,city,stars,review_count,is_open from business order by stars desc limit 10;
+  </select> 
+  
 </mapper>
