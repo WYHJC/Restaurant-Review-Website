@@ -10,4 +10,5 @@ public interface BusinessDao {
 	public Business selectBusinessByID(@Param("id")String id);
 	public List<Business> selectRecoBusinessByUser(String id);
 	public List<Business> selectGeneralRecoBusiness();
+	public List<Business> selectBusinessByFuzzyQuery(String input);
 }

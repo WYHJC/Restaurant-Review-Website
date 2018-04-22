@@ -18,8 +18,14 @@
 (select tag_id from user_tag where user_id = #{id}))
 order by stars desc limit 10;
   </select>  
+  
   <select id="selectGeneralRecoBusiness" resultType="model.Business">
   select id,name,address,city,stars,review_count,is_open from business order by stars desc limit 10;
   </select> 
+  
+  <!-- $传过来的参数不带单引号 -->
+  <select id="selectBusinessByFuzzyQuery" resultType="model.Business">
+  select id,name,address,city,stars,review_count,is_open from business where name like '%${input}%' limit 5;
+  </select>
   
 </mapper>

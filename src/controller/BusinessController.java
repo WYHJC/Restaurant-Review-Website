@@ -28,6 +28,12 @@ public class BusinessController {
 		this.businessService = businessService;
 	}
 	
+	/**
+	 * 根据餐馆id显示餐馆详细信息
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("displayBusinessInfo")
 	public ModelAndView displayBusinessInfo(@RequestParam String id){
 		ModelAndView modelAndView = new ModelAndView("redirect:infofR.html");
@@ -38,6 +44,7 @@ public class BusinessController {
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(businessInfo);
 			modelAndView.addObject("businessInfo", json);
+			System.out.println(json);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,5 +65,17 @@ public class BusinessController {
 	@ResponseBody
 	public List<Business> findGeneralReco(){	 
 		return businessService.selectGeneralRecoBusiness();
+	}
+	
+	/**
+	 * 模糊查询
+	 * 
+	 * @param input
+	 * @return
+	 */
+	@RequestMapping("FuzzyQueryByInput")
+	@ResponseBody
+	public List<Business> FuzzyQueryByInput(@RequestParam String input){
+		return businessService.FuzzyQueryByInput(input);
 	}
 }

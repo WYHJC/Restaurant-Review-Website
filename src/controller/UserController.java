@@ -32,7 +32,6 @@ public class UserController {
     @RequestMapping("login")
     @ResponseBody
     public User login(@RequestBody Map<String, String> data){
-    	System.out.println(data.get("email")+data.get("password"));
     	//加密后发送数据库验证
     	String email = MD5Util.encodeToHex(data.get("email"));
     	String password = MD5Util.encodeToHex(data.get("password"));
@@ -45,11 +44,11 @@ public class UserController {
     public String registerVerification(@RequestParam String email, @RequestParam String password){
     	System.out.println(email+" " + password);
     	if(userService.register(email, password) == 1){
-    		return "index";
+    		return "register_succeed";
     	}
     	
     	
-    	return "registerFailed";
+    	return "register_failed";
     }
     
     @RequestMapping("register")
@@ -57,8 +56,8 @@ public class UserController {
     public String register(@RequestBody Map<String, String> data){
     	String email = data.get("email");
     	String password = data.get("password");
-    	System.out.println(email + "  " + password);
-        StringBuffer content = new StringBuffer("<h2>请点击下面的链接激活帐号，链接只能使用一次，请尽快激活！</h2>");
+        StringBuffer content = new StringBuffer("<h2>Please click the link below to activate the account. "
+        		+ "The link can only be used once. Please activate it as soon as possible!</h2>");
         //用户信息加密（邮箱和密码）
         String emailMD5 = MD5Util.encodeToHex(email);
         password = MD5Util.encodeToHex(password); 

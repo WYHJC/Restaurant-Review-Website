@@ -49,9 +49,15 @@ public class BusinessServiceImpl implements BusinessService{
 		
 		return ;
 	}
+	
 	@Override
 	public List<Business> selectGeneralRecoBusiness() {
 		return businessDao.selectGeneralRecoBusiness();
 		
+	}
+	
+	@Override
+	public List<Business> FuzzyQueryByInput(String input) {
+		return businessDao.selectBusinessByFuzzyQuery(input);
 	}
 }

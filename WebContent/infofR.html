@@ -38,10 +38,41 @@
     <![endif]-->
  
     <script src='js/device.min.js'></script> 
+    
+<style>
+/* body,li,p,ul { 
+    margin: 0;
+    padding: 0;
+    font: 12px/1 Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+ul, li, ol { list-style: none; } */
+
+/*星星样式*/
+/* .content{ width:600px; margin:0 auto; padding-top:20px;}
+.title{ font-size:14px; background:#dfdfdf; padding:10px; margin-bottom:10px;}
+.block{ width:100%; margin:0 0 20px 0; padding-top:10px; padding-left:50px; line-height:21px;}
+.block .star_score{ float:left;}
+.star_list{height:21px;margin:50px; line-height:21px;}
+.block p,.block .attitude{ padding-left:20px; line-height:21px; display:inline-block;}
+.block p span{ color:#C00; font-size:16px; font-family:Georgia, "Times New Roman", Times, serif;}
+.star_score { background:url(images/stark2.png); width:160px; height:21px;  position:relative; }
+.star_score a{ height:21px; display:block; text-indent:-999em; position:absolute;left:0;}
+.star_score a:hover{ background:url(images/stars2.png);left:0;}
+.star_score a.clibg{ background:url(images/stars2.png);left:0;}
+#starttwo .star_score { background:url(images/starky.png);}
+#starttwo .star_score a:hover{ background:url(images/starsy.png);left:0;}
+#starttwo .star_score a.clibg{ background:url(images/starsy.png);left:0;} */
+/*星星样式*/
+.show_number{ padding-left:0px; padding-top:20px;}
+.show_number li{ width:240px;  padding:10px; margin-right:5px; margin-bottom:20px;}
+.atar_Show{background:url(images/stark2.png); width:160px; height:21px;  position:relative; float:left; }
+.atar_Show p{ background:url(images/stars2.png);left:0; height:21px; width:134px;}
+.show_number li span{ display:inline-block; line-height:21px;}
+</style>
+    
 </head>
 
 <body>
-
 <script type="text/javascript">
 <!-- 正则表达式提取存储的json字符串 -->
 function GetQueryString(name) {
@@ -49,11 +80,12 @@ function GetQueryString(name) {
 	var r = window.location.search.substr(1).match(reg);
 	if (r!=null) return unescape(r[2]); return null;
 	}
-
 $(document).ready(function(){
 	//将json字符串转为json对象
 	var data = JSON.parse(GetQueryString("businessInfo"));
-	document.getElementById("business_name").innerText=data.name;
+	document.getElementById("business_name").innerText=data.name.replace(/\+/g, " ");
+	document.getElementById("business_address").innerText=' Located on : ' + data.address.replace(/\+/g, " ");
+	document.getElementById("business_reviews").innerText=' Review counts : ' + data.review_count;
 });
 </script>
 
@@ -117,66 +149,50 @@ $(document).ready(function(){
     <!-- single -->
 	<div class="single">
 	<div class="container">
-		<h1 class="animated fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">餐厅信息</h1>
+		<!-- <h1 class="animated fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">餐厅名称</h1> -->
 		<div class="single-left wow fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">
-			<p>Published on <span>January 10,2015</span></p>
+		<!-- <p>Located on :<span>海淀区北下关 </span></p><p>Located on :<span>海淀区北下关 </span></p> -->
 			<img src="images/page-1_img01.jpg" alt=" " class="img-responsive" />
 		</div>
 		<div class="single-right wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
-			<h2 id="business_name">餐厅名称</h2>
-			<p><span>描述</span>
-			<span>There are many variations of passages of Lorem Ipsum available,
-			but the majority have suffered alteration in some form, by injected humour,
-			or randomised words which don't look even slightly believable. If you are going
-			to use a passage.</span></p>
+			<!-- <h2 id="business_name">12</h2> -->
+			<h1 id="business_name" class="animated fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">餐厅名称</h1>
+
+    <ul class="show_number clearfix">
+       <li>
+        <div class="atar_Show">
+          <p title="3.5"></p>
+        </div>
+        <span></span>
+       </li>
+    </ul>
+    		<img src="images/zb.png" style="float:left;width:24px;height:24px;" /><p id="business_address">&nbsp;Located on :</p>
+			<!-- <img src="images/sj.png" style="float:left;width:18px;height:18px;" /><p>&nbsp;开业时间:9：00~21：00</p> -->
+			<img src="images/pl.png" style="float:left;width:24px;height:24px;" /><p id="business_reviews">&nbsp;评论总数 :&nbsp;3</p>
+			
+    <script>
+    //显示分数
+      $(".show_number li p").each(function(index, element) {
+        var num=$(this).attr("title");
+        var www=num*2*16;//
+        $(this).parent(".atar_Show").siblings("span").text(num+"分");
+        $(this).css("width",www);
+    });
+    </script>
+
+			
+			<p><span></span>
+			<span></span></p>
 		</div>
 		<div class="clearfix"> </div>
-		<p class="tortor wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">There are many variations of passages of Lorem Ipsum available,
+		<!-- <p class="tortor wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">There are many variations of passages of Lorem Ipsum available,
 			but the majority have suffered alteration in some form, by injected humour,
 			or randomised words which don't look even slightly believable. If you are going
 			to use a passage.Nulla Quis lorum nisl tempus convallis quis ac lactus.Sed porttitorlactus nibh
-			eget tortor risus.Nulla porttitor accumsan tincidunt.</p>
-		<div class="tags-cate">
-			<div class="cat-grid wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
-				<h4><span>C</span>ategories</h4>
-				<ul>
-					<li><a href="#">Donec rutrum malesuada curabitur</a></li>
-					<li><a href="#">Sed porttitorlactus nibh</a></li>
-					<li><a href="#">Curabitur aliquet quam id dui posuere blandit</a></li>
-					<li><a href="#">Nulla porttitoraccumsan tincidunt</a></li>
-					<li><a href="#">which don't look even slightly believable</a></li>
-					<li><a href="#">Sed porttitorlactus nibh</a></li>
-				</ul>
-			</div>
-			<div class="cat-grid wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
-				<h4><span>A</span>rchives</h4>
-				<ul>
-					<li><a href="#">Jan 24,2012.</a></li>
-					<li><a href="#">April 15,2013.</a></li>
-					<li><a href="#">Sep 24,2012.</a></li>
-					<li><a href="#">May 24,2014.</a></li>
-					<li><a href="#">April 15,2014.</a></li>
-					<li><a href="#">Jan 21,2015.</a></li>
-				</ul>
-			</div>
-			<div class="cat-grid wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
-				<h4><span>T</span>ags</h4>
-				<div class="top-social-icons">
-						<a href="#">Cards</a>
-						<a href="#">Website</a>
-						<a href="#">Icons</a>
-					<div class="clearfix"> </div>
-						<a href="#">Themeforest</a>
-						<a href="#">Interfaces</a>
-					<div class="clearfix"> </div>
-						<a href="#">Inspiration</a>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
+			eget tortor risus.Nulla porttitor accumsan tincidunt.</p>  -->
+
 		<div class="three-com">
-			<h3 class="wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">评论 <span>on</span> <label>Donec volutpat ligula non dapibus volutpat</label></h3>
+			<h3 class="wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms"><label>Comments</label> <span>3 comments all</span> </h3>
 			<div class="tom-grid wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
 				<div class="tom">
 				<img src="images/co.png" alt=" " />
@@ -250,75 +266,6 @@ $(document).ready(function(){
 		</div>
 	</div>
 	</div>
-<!-- //single -->
-<!--         <section class="well well__offset-3">
-            <div class="container">
-               <h2><em>餐</em>厅名称</h2>
-                <div class="row box-1">
-                    <div class="grid_6">
-                        <div class="img"><div class="lazy-img" style="padding-bottom: 64.91228070175439%;"><img data-src="images/page-3_img01.jpg" alt=""></div></div>
-                    </div>
-                    <div class="grid_6">
-                        <h3 class="indents-3">Onteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol sed,pharetra venenatis nulla.</h3>
-                        <p class="indents-3">Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla.</p>
-                        <h3 class="indents-3">Hestibulum volutpat turpis ut massa commodo, quis aliquam massa fertoli estibulum volutpat turpis ut massa commodo.</h3>
-                        <p class="indents-3"> Guis aliquam massa gertoli facilisis.Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol sed,pharetra venenatis nulla.</p>
-                        <h3 class="indents-3">Enteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol sed,pharetra venenatis nulla.</h3>
-                        <p class="indents-3">Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla.Vestibulum volutpat turpis ut massa commodo, quis aliquam massa fertoli estibulum</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="parallax parallax4" data-parallax-speed="-0.4">
-            <div class="container">
-                <h2><em>Special </em>Offers</h2>
-                <p class="indents-3">Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla. Vestibulum volutpatturpis ut massa commodo, quis aliquam massa facilisis.Integer convavel miberto merlonelaoreet, at ornare lorem consequat. Phasellus era nisl auctor venenatis nulla. Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.<br><br>Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.Integer convavel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor venenatis nullatibulum volutpat turpis ut massa commodoquis aliquam massa facilisis.Integer convavel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor venenatis nulla.</p>  
-            </div>
-        </section>
-        <section class="well well__offset-4">
-            <div class="container">
-                 <a href="./menu.html"><h2><h2><em>菜 </em>单</h2></a>
-                <div class="row">
-                    <div class="grid_4">
-                        <div class="img"><div class="lazy-img" style="padding-bottom: 55.94594594594595%;"><img data-src="images/page-3_img02.jpg" alt=""></div></div>
-                        <h3>Anteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla. </h3>
-                        <p>Vestibulum volutpatturpis ut massa commodo, quis aliquam massa facilisis.Integer convavel miberto merlonelaoreet, at ornare lorem consequat. Phasellus</p>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img"><div class="lazy-img" style="padding-bottom: 55.94594594594595%;"><img data-src="images/page-3_img03.jpg" alt=""></div></div>
-                        <h3>Genteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla. </h3>
-                        <p>Meestibulum volutpatturpis ut massa commodo, quis aliquam massa facilisis.Integer convavel miberto merlonelaoreet, at ornare lorem consequat. Phasellus</p>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img"><div class="lazy-img" style="padding-bottom: 55.94594594594595%;"><img data-src="images/page-3_img04.jpg" alt=""></div></div>
-                        <h3>Ternteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nul. </h3>
-                        <p>Testibulum volutpatturpis ut massa commodo, quis aliquam massa facilisis.Integer convavel miberto merlonelaoreet, at ornare lorem consequat. Phasellus</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="grid_4">
-                        <div class="img"><div class="lazy-img" style="padding-bottom: 55.94594594594595%;"><img data-src="images/page-3_img05.jpg" alt=""></div></div>
-                        <h3>Onteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla. </h3>
-                        <p>Vestibulum volutpatturpis ut massa commodo, quis aliquam massa facilisis.Integer convavel miberto merlonelaoreet, at ornare lorem consequat. Phasellus</p>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img"><div class="lazy-img" style="padding-bottom: 55.94594594594595%;"><img data-src="images/page-3_img06.jpg" alt=""></div></div>
-                        <h3>Genteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla. </h3>
-                        <p>Meestibulum volutpatturpis ut massa commodo, quis aliquam massa facilisis.Integer convavel miberto merlonelaoreet, at ornare lorem consequat. Phasellus</p>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img"><div class="lazy-img" style="padding-bottom: 55.94594594594595%;"><img data-src="images/page-3_img07.jpg" alt=""></div></div>
-                        <h3>Ternteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nul. </h3>
-                        <p>Testibulum volutpatturpis ut massa commodo, quis aliquam massa facilisis.Integer convavel miberto merlonelaoreet, at ornare lorem consequat. Phasellus</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="parallax parallax5" data-parallax-speed="-0.4">
-            <div class="container">
-                <h2><em>Special menu </em>for Special Event</h2>
-            </div>
-        </section> -->
 
     <!--========================================================
                               FOOTER
