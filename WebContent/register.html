@@ -66,10 +66,10 @@ function register(){
 		dataType: "json",
 		success: function(data){
 			if(data.regMsg == 'succeed'){
-				alert("邮件已发送，请尽快验证！");
+				alert("The email has been sent, please verify it as soon as possible!");
 				window.location.href=result+'/index.html';
 			}else{
-				alert("邮件发送失败，请稍后重试！");
+				alert("Email failed, please try again later!");
 			}
 		},
 		error:function(data){  
@@ -98,33 +98,33 @@ function register(){
                 <a class="sf-menu-toggle fa fa-bars" href="#"></a>
                 <ul class="sf-menu">
                     <li >
-                        <a href="./">首页</a>
+                        <a href="./">Home page</a>
                     </li>
                     <li>
-                        <a href="register.html">注册</a>
+                        <a href="register.html">Register</a>
                     </li>
                     <li>
-                        <a href="log.html">登陆</a>
+                        <a href="log.html">Log in</a>
                     </li>
                     <li>
-                       <a href="index_fuser.html">个人信息</a>
+                       <a href="index_fuser.html">Profile</a>
                         <ul>
                                 <li>
-                                    <a href="comment_fuser.html">我的评论</a>
+                                    <a href="comment_fuser.html">My reviews</a>
                                 </li>
                                 <li>
-                                    <a href="address_fuser.html">我的地址</a>
+                                    <a href="address_fuser.html">My address</a>
                                 </li>
                                 <li>
-                                    <a href="information_fuser.html">我的信息</a>
+                                    <a href="information_fuser.html">My information</a>
                                 </li>
                             </ul>
                     </li>
                     <li>
-                          <a href="connect_fuser.html">联系我们</a>
+                          <a href="connect_fuser.html">Contact us</a>
                     </li>
                     <li>
-                        <a href="#">餐厅搜索</a>
+                        <a href="#">Search</a>
                     </li>
                 </ul>
             </nav>            
@@ -144,19 +144,19 @@ function register(){
 						<form action="" id="fromRegister" >
 							<div class="input_outer">
 								<span class="u_user"></span>
-								<input id="email" name="email" class="text" style="color: black" type="email" placeholder="请输入邮箱">
+								<input id="email" name="email" class="text" style="color: black" type="email" placeholder="Please input your email">
 							</div>
 							<div class="input_outer">
 								<span class="us_uer"></span>
-								<input id="password" name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+								<input id="password" name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="Please input your password">
 							</div>
 								<div class="input_outer">
 								<span class="us_uer"></span>
-								<input name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="请重复密码">
+								<input name="password" class="text" style="color: black; position:absolute; z-index:100;"value="" type="password" placeholder="Please repeat your password">
 							</div>
 							
 					<ul>
-					<font color="black" size = "4"><li>喜好口味</li></font>
+					<font color="black" size = "4"><li>Your favorite</li></font>
 					<font color="black">
 
 					<li><input type="checkbox" name="checkbox" value="无辣不欢"> 无辣不欢
@@ -193,7 +193,7 @@ function register(){
 </ul>
 
 </font>
-							<div class="mb2"><a class="act-but submit" style="color: #FFFFFF" onclick="register()">注册</a></div>
+							<div class="mb2"><a class="act-but submit" style="color: #FFFFFF" onclick="register()">Register</a></div>
 						</form>
 					</div>
 				</div>
