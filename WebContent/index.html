@@ -64,8 +64,7 @@
                         <a href="log.html">Log in</a>
                     </li>
                     <li id="zx" >
-                        <a onclick="logout('user_id')">Log out</a>
-
+                        <a href="javascript:logout('user_id')">Log out</a>
                     </li>
     				<li id="grxx">
                        <a href="index_fuser.html">Profile</a>
@@ -104,11 +103,9 @@ function setCookie(c_name,value,expiredays)
 }
 
 function logout(name){
-	var pathName = document.location.pathname;
-    var index = pathName.substr(1).indexOf("/");
-    var result = pathName.substr(0,index+1);
 	clearCookie(name);
-	window.location.href=result+'/index.html';
+	//window.location.href=result+'/index.html';
+	location.reload();
 }
 
 function clearCookie(name) {  
@@ -130,9 +127,7 @@ if (document.cookie.length>0)
   }
 return ""
 }
-dl.style.display = "";
-grxx.style.display = "none";
-zx.style.display = "none";
+
 
 
 $(document).ready(function(){
@@ -178,6 +173,9 @@ if(uid!=""){
 	zx.style.display = "";
 
 }else{
+	dl.style.display = "";
+	grxx.style.display = "none";
+	zx.style.display = "none";
 }});
 
 </script>

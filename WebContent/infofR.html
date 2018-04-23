@@ -114,10 +114,13 @@ $(document).ready(function(){
                     <li>
                         <a href="register.html">Register</a>
                     </li>
-                    <li>
+                    <li id="dl">
                         <a href="log.html">Log in</a>
                     </li>
-                    <li>
+                    <li id="zx" >
+                        <a href="javascript:logout('user_id')">Log out</a>
+                    </li>
+                    <li id="grxx">
                        <a href="index_fuser.html">Profile</a>
                         <ul>
                                 <li>
@@ -143,6 +146,49 @@ $(document).ready(function(){
         </div>
 
     </header>
+
+<script type="text/javascript">
+var uid = getCookie("user_id");
+
+function logout(name){
+	clearCookie(name);
+	//window.location.href='#';
+	location.reload();
+}
+
+function clearCookie(name) {  
+    setCookie(name, "", -1);  
+} 
+
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=")
+  if (c_start!=-1)
+    { 
+    c_start=c_start + c_name.length+1 
+    c_end=document.cookie.indexOf(";",c_start)
+    if (c_end==-1) c_end=document.cookie.length
+    return unescape(document.cookie.substring(c_start,c_end))
+    } 
+  }
+return ""
+}
+
+$(document).ready(function(){ 
+	if(uid!=""){
+		dl.style.display = "none";
+		grxx.style.display = "";
+		zx.style.display = "";
+
+	}else{
+		dl.style.display = "";
+		grxx.style.display = "none";
+		zx.style.display = "none";
+	}});
+</script>
+
     <!--========================================================
                               CONTENT
     =========================================================-->    
