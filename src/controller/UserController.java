@@ -40,9 +40,7 @@ public class UserController {
     }
     
     @RequestMapping("registerVerification")
-    @ResponseBody
     public String registerVerification(@RequestParam String email, @RequestParam String password){
-    	System.out.println(email+" " + password);
     	if(userService.register(email, password) == 1){
     		return "register_succeed";
     	}
@@ -75,7 +73,6 @@ public class UserController {
     	try{
     	ObjectMapper mapper = new ObjectMapper();
 		json = mapper.writeValueAsString(map);
-		System.out.println(json);
 		return json;
     	} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block

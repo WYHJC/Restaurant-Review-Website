@@ -214,6 +214,7 @@ $(document).ready(function(){
     </ul>
     		<img src="images/zb.png" style="float:left;width:24px;height:24px;" /><p id="business_address">&nbsp;Located on :</p>
 			<!-- <img src="images/sj.png" style="float:left;width:18px;height:18px;" /><p>&nbsp;开业时间:9：00~21：00</p> -->
+			<br>
 			<img src="images/pl.png" style="float:left;width:24px;height:24px;" /><p id="business_reviews">&nbsp;评论总数 :&nbsp;3</p>
 			
     <script>
@@ -221,7 +222,7 @@ $(document).ready(function(){
       $(".show_number li p").each(function(index, element) {
         var num=$(this).attr("title");
         var www=num*2*16;//
-        $(this).parent(".atar_Show").siblings("span").text(num+"分");
+        //$(this).parent(".atar_Show").siblings("span").text(num+" score");
         $(this).css("width",www);
     });
     </script>
