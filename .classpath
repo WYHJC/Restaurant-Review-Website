@@ -23,22 +23,22 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis-spring-1.2.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.6-bin.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aop-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aspects-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-beans-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-core-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-expression-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-jdbc-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-test-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-3.2.16.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.5.0.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.5.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.5.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjweaver-1.8.13.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aop-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aspects-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-beans-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-core-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-expression-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-jdbc-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-test-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-5.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-websocket-5.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.9.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.9.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.9.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

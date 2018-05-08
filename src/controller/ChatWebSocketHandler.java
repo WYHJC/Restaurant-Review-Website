@@ -3,12 +3,14 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
+@Component
 public class ChatWebSocketHandler implements WebSocketHandler {
 
 	private static ArrayList<WebSocketSession> users = new ArrayList<WebSocketSession>();
