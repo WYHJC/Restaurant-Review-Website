@@ -57,7 +57,12 @@ public class BusinessServiceImpl implements BusinessService{
 	}
 	
 	@Override
-	public List<Business> FuzzyQueryByInput(String input) {
+	public List<Business> fuzzyQueryByInput(String input) {
 		return businessDao.selectBusinessByFuzzyQuery(input);
+	}
+	
+	@Override
+	public int saveShareTableUser(String business_id, String user_id){
+		return businessDao.insertShareTable(business_id, user_id);
 	}
 }

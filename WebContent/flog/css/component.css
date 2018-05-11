@@ -3,7 +3,7 @@
 	position: relative;
 	width: 100%;
 	background: #333;
-	overflow: hidden;
+	overflow: visible;
 	background-size: cover;
 	background-position: center center;
 	z-index: 1;
@@ -21,7 +21,7 @@
 	left: 50%;
 	top:50%;
 	margin-left: -200px;
-	margin-top: -250px;
+	margin-top: -320px;
 }
 .logo_box h3{
 	text-align: center;

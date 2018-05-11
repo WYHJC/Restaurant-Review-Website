@@ -80,13 +80,82 @@ function GetQueryString(name) {
 	var r = window.location.search.substr(1).match(reg);
 	if (r!=null) return unescape(r[2]); return null;
 	}
-$(document).ready(function(){
-	//将json字符串转为json对象
-	var data = JSON.parse(GetQueryString("businessInfo"));
+
+var uid = getCookie("user_id");
+
+function logout(name){
+	clearCookie(name);
+	//window.location.href='#';
+	location.reload();
+}
+
+function clearCookie(name) {  
+    setCookie(name, "", -1);  
+} 
+
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=")
+  if (c_start!=-1)
+    { 
+    c_start=c_start + c_name.length+1 
+    c_end=document.cookie.indexOf(";",c_start)
+    if (c_end==-1) c_end=document.cookie.length
+    return unescape(document.cookie.substring(c_start,c_end))
+    } 
+  }
+return ""
+}
+
+//将json字符串转为json对象
+var data = JSON.parse(GetQueryString("businessInfo"));
+
+function shareTable(){
+	if(uid!=""){
+		var pathName = document.location.pathname;
+		var index = pathName.substr(1).indexOf("/");
+		var result = pathName.substr(0,index+1);
+		var map = {business_id: data.id, user_id: uid};
+		$.ajax({
+			type: "POST",
+			url: result + "/saveShareTableUser.do",
+			contentType: "application/json",
+			data: JSON.stringify(map),
+			dataType: "json",
+			success: function(data){
+				if(data.shareTableMsg == 'succeed'){
+					alert("You have successfully shared the table!")
+				}else{
+					alert("Failed to share table!");
+				}
+			},
+			error:function(data){  
+				//alert(data.regMsg);
+			}
+		});
+	}else{
+		alert("Please login first!")
+	}
+}
+
+$(document).ready(function(){ 
+	if(uid!=""){
+		dl.style.display = "none";
+		grxx.style.display = "";
+		zx.style.display = "";
+
+	}else{
+		dl.style.display = "";
+		grxx.style.display = "none";
+		zx.style.display = "none";
+	}
+	
 	document.getElementById("business_name").innerText=data.name.replace(/\+/g, " ");
 	document.getElementById("business_address").innerText=' Located on : ' + data.address.replace(/\+/g, " ");
 	document.getElementById("business_reviews").innerText=' Review counts : ' + data.review_count;
-});
+	});
 </script>
 
 <div class="page">
@@ -147,48 +216,6 @@ $(document).ready(function(){
 
     </header>
 
-<script type="text/javascript">
-var uid = getCookie("user_id");
-
-function logout(name){
-	clearCookie(name);
-	//window.location.href='#';
-	location.reload();
-}
-
-function clearCookie(name) {  
-    setCookie(name, "", -1);  
-} 
-
-function getCookie(c_name)
-{
-if (document.cookie.length>0)
-  {
-  c_start=document.cookie.indexOf(c_name + "=")
-  if (c_start!=-1)
-    { 
-    c_start=c_start + c_name.length+1 
-    c_end=document.cookie.indexOf(";",c_start)
-    if (c_end==-1) c_end=document.cookie.length
-    return unescape(document.cookie.substring(c_start,c_end))
-    } 
-  }
-return ""
-}
-
-$(document).ready(function(){ 
-	if(uid!=""){
-		dl.style.display = "none";
-		grxx.style.display = "";
-		zx.style.display = "";
-
-	}else{
-		dl.style.display = "";
-		grxx.style.display = "none";
-		zx.style.display = "none";
-	}});
-</script>
-
     <!--========================================================
                               CONTENT
     =========================================================-->    
@@ -216,7 +243,8 @@ $(document).ready(function(){
 			<!-- <img src="images/sj.png" style="float:left;width:18px;height:18px;" /><p>&nbsp;开业时间:9：00~21：00</p> -->
 			<br>
 			<img src="images/pl.png" style="float:left;width:24px;height:24px;" /><p id="business_reviews">&nbsp;评论总数 :&nbsp;3</p>
-			
+			<input type="button" value="Preengage" class="btn btn-lg btn-primary" style="width:200px;">
+			<input type="button" value="Share Table"  onclick="shareTable();" class="btn btn-lg btn-primary" style="width:200px;">
     <script>
     //显示分数
       $(".show_number li p").each(function(index, element) {

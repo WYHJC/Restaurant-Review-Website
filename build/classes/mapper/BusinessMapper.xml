@@ -28,4 +28,8 @@ order by stars desc limit 10;
   select id,name,address,city,stars,review_count,is_open from business where name like '%${input}%' limit 5;
   </select>
   
+  <insert id="insertShareTable" parameterType="map" useGeneratedKeys="true" keyProperty="id" >  
+   INSERT INTO share_table VALUES(#{0},#{1});
+  </insert>
+  
 </mapper>

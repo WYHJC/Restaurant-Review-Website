@@ -7,27 +7,22 @@
     <meta name="format-detection" content="telephone=no"/>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
-    <link rel="stylesheet" href="css/style.css"><base>
+    <link rel="stylesheet" href="css/style.css"><!-- <base> -->
     
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
-
-<!-- <link rel="stylesheet" type="text/css" href="flog/css/normalize.css" /> -->
-<link rel="stylesheet" type="text/css" href="flog/css/demo.css" />
-<!--必要样式-->
+<link rel="stylesheet" href="css/jquery-labelauty.css">
+<style>
+ul { list-style-type: none;}
+li { display: inline-block;}
+li { margin: 2px 0;}
+input.labelauty + label { font: 12px "Microsoft Yahei";}
+</style>
 <link rel="stylesheet" type="text/css" href="flog/css/component.css" />
-<!--[if IE]>
-<script src="js/html5.js"></script>
-    <!--[if lt IE 9]>
-    <html class="lt-ie9">
-    <div style=' clear: both; text-align:center; position: relative;'>
-        <a href="http://windows.microsoft.com/en-US/internet-explorer/..">
-            <img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820"
-                 alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
-        </a> 
-    </div>
-    <script src="js/html5shiv.js"></script>
-    <![endif]-->
+<link rel="stylesheet" type="text/css" href="flog/css/demo.css" />
+
+
+
  
     <script src='js/device.min.js'></script> 
 </head>
@@ -157,41 +152,52 @@ function register(){
 							
 					<ul>
 					<font color="black" size = "4"><li>Your favorite</li></font>
+						<br />
 					<font color="black">
 
-					<li><input type="checkbox" name="checkbox" value="无辣不欢"> 无辣不欢
-					<input type="checkbox" name="checkbox" value="素食主义"> 素食主义
-					<input type="checkbox" name="checkbox" value="不能没有肉"> 不能没有肉
-					<input type="checkbox" name="checkbox" value="吃辣会哭"> 吃辣会哭
-					<input type="checkbox" name="checkbox" value="咖喱狂热者"> 咖喱狂热者
-					<input type="checkbox" name="checkbox" value="我爱芝士"> 我爱芝士<br> </li>
-							<li><input type="checkbox" name="checkbox" value="川菜"> 川菜
-					<input type="checkbox" name="checkbox" value="粤菜"> 粤菜	 
-					<input type="checkbox" name="checkbox" value="鲁菜"> 鲁菜
-					<input type="checkbox" name="checkbox" value="苏菜"> 苏菜 
-					<input type="checkbox" name="checkbox" value="浙菜"> 浙菜 
-					<input type="checkbox" name="checkbox" value="闽菜"> 闽菜<br> </li>
-							<li><input type="checkbox" name="checkbox" value="徽菜"> 徽菜 
-					<input type="checkbox" name="checkbox" value="湘菜"> 湘菜
-					<input type="checkbox" name="checkbox" value="快餐"> 快餐 
-					<input type="checkbox" name="checkbox" value="西餐"> 西餐 
-					<input type="checkbox" name="checkbox" value="中餐"> 中餐
-					<input type="checkbox" name="checkbox" value="异国风情"> 异国风情<br> </li>
-							<li><input type="checkbox" name="checkbox" value="自助小王子"> 自助小王子 
-					<input type="checkbox" name="checkbox" value="日料"> 日料
-					<input type="checkbox" name="checkbox" value="韩料"> 韩料 
-					<input type="checkbox" name="checkbox" value="拍照"> 拍照
-					<input type="checkbox" name="checkbox" value="聚餐"> 聚餐 
-					<input type="checkbox" name="checkbox" value="面食"> 面食<br> </li>
-					<li><input type="checkbox" name="checkbox" value="火锅"> 火锅 
-					<input type="checkbox" name="checkbox" value="烧烤"> 烧烤 
-					<input type="checkbox" name="checkbox" value="清淡"> 清淡 
-					<input type="checkbox" name="checkbox" value="炒菜"> 炒菜
-					<input type="checkbox" name="checkbox" value="炖汤"> 炖汤 
-					<input type="checkbox" name="checkbox" value="炸串"> 炸串<br> </li>
+					<li><input type="checkbox" name="checkbox1" data-labelauty="无辣不欢"> </li>
+					<li><input type="checkbox" name="checkbox2" data-labelauty="素食主义"> </li>
+					<li><input type="checkbox" name="checkbox3" data-labelauty="不能没有肉"> </li>
+					<li><input type="checkbox" name="checkbox17" data-labelauty="吃辣会哭"> </li>
+					<li><input type="checkbox" name="checkbox26" data-labelauty="咖喱狂热者"> </li>
+					 
+					<li><input type="checkbox" name="checkbox5" data-labelauty="川菜"> </li>
+					<li><input type="checkbox" name="checkbox6" data-labelauty="粤菜	">  </li>
+					<li><input type="checkbox" name="checkbox7" data-labelauty="鲁菜"> </li>
+					<li><input type="checkbox" name="checkbox18" data-labelauty="苏菜">  </li>
+					<li><input type="checkbox" name="checkbox27" data-labelauty="浙菜">  </li>
+					
+							<li><input type="checkbox" name="checkbox9" data-labelauty="徽菜">  </li>
+					<li><input type="checkbox" name="checkbox10" data-labelauty="湘菜"> </li>
+					<li><input type="checkbox" name="checkbox11" data-labelauty="快餐">  </li>
+					<li><input type="checkbox" name="checkbox19" data-labelauty="西餐 "> </li>
+					<li><input type="checkbox" name="checkbox28" data-labelauty="中餐"> 
+					 </li>
+							<li><input type="checkbox" name="checkbox13" data-labelauty="自助小王子 "> </li>
+					<li><input type="checkbox" name="checkbox14" data-labelauty="日料"> </li>
+					<li><input type="checkbox" name="checkbox15" data-labelauty="韩料">  </li>
+					<li><input type="checkbox" name="checkbox20" data-labelauty="拍照"> </li>
+					<li><input type="checkbox" name="checkbox29" data-labelauty="聚餐 "> 
+					</li>
+					<li><input type="checkbox" name="checkbox21" data-labelauty="火锅">  </li>
+					<li><input type="checkbox" name="checkbox22" data-labelauty="烧烤">  </li>
+					<li><input type="checkbox" name="checkbox23" data-labelauty="清淡">  </li>
+					<li><input type="checkbox" name="checkbox24" data-labelauty="炒菜"> </li>
+					<li><input type="checkbox" name="checkbox30" data-labelauty="炖汤">  
+					</li>
+					
+					<li><input type="checkbox" name="checkbox4" data-labelauty="我爱芝士"> </li>
+					<li><input type="checkbox" name="checkbox8" data-labelauty="闽菜"> </li>
+					<li><input type="checkbox" name="checkbox12" data-labelauty="异国风情"> </li>
+					<li><input type="checkbox" name="checkbox16" data-labelauty="面试"> </li>
+					<li><input type="checkbox" name="checkbox25" data-labelauty="炸串"> <br> </li>
 					
 </ul>
-
+<script>
+$(function(){
+	$(':input').labelauty();
+});
+</script>
 </font>
 							<div class="mb2"><a class="act-but submit" style="color: #FFFFFF" href="javascript:register()">Register</a></div>
 						</form>
@@ -199,7 +205,8 @@ function register(){
 				</div>
 			</div>
 		</div>
-
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script src="js/jquery-labelauty.js"></script>
 		<script src="flog/js/TweenLite.min.js"></script>
 		<script src="flog/js/EasePack.min.js"></script>
 		<script src="flog/js/rAF.js"></script>

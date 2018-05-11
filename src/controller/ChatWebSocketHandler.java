@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -13,13 +14,14 @@ import org.springframework.web.socket.WebSocketSession;
 @Component
 public class ChatWebSocketHandler implements WebSocketHandler {
 
-	private static ArrayList<WebSocketSession> users = new ArrayList<WebSocketSession>();
+	private static HashMap<String, ArrayList<WebSocketSession>> chatRooms = new HashMap<String, ArrayList<WebSocketSession>>();
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("用户已添加");
-		users.add(session);
+		//String chatRoomName = (String)session.getAttributes().get("business_name");
+		//chatRooms.get(chatRoomName).add(session);
 	}
 	
 	@Override
@@ -28,16 +30,19 @@ public class ChatWebSocketHandler implements WebSocketHandler {
 		if(session.isOpen()){
 			session.close();
 		}
-		users.remove(session);
-		System.out.println("用户已退出");
+//		String chatRoomName = (String)session.getAttributes().get("business_name");
+//		chatRooms.get(chatRoomName).remove(session);
+//		System.out.println("用户已退出");
 	}
 
 	@Override
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
 		// TODO Auto-generated method stub
-		String id = (String)session.getAttributes().get("user_id");
-		TextMessage tMessage = (TextMessage)message.getPayload();
-		sendMessageToUser(id, tMessage);
+		System.out.println("收到消息");
+		//String chatRoomName = (String)session.getAttributes().get("business_name");
+		String msg = (String)message.getPayload();
+		System.out.println(msg);
+		//sendMessageToChatRoom(chatRoomName, tMessage);
 	}
 
 	@Override
@@ -52,17 +57,18 @@ public class ChatWebSocketHandler implements WebSocketHandler {
 		return false;
 	}
 
+	private void createChatRoom(){
+		
+	}
 	
-	private void sendMessageToUser(String id, TextMessage message){
-		for(WebSocketSession receiver: users){
-			if(receiver.getAttributes().get("user_id").equals(id)){
-				if(receiver.isOpen()){
-					try {
-						receiver.sendMessage(message);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+	private void sendMessageToChatRoom(String chatRoomName, TextMessage message){
+		for(WebSocketSession receiver: chatRooms.get(chatRoomName)){
+			if(receiver.isOpen()){
+				try {
+					receiver.sendMessage(message);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}

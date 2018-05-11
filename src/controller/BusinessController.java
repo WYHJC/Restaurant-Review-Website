@@ -1,10 +1,12 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,13 +46,11 @@ public class BusinessController {
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(businessInfo);
 			modelAndView.addObject("businessInfo", json);
-			System.out.println(json);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		//modelAndView.addObject("name", "hahaha");
 				
 		return modelAndView;
 	}
@@ -68,14 +68,59 @@ public class BusinessController {
 	}
 	
 	/**
+	 * 传递用户输入查询内容到餐馆界面
+	 * 
+	 * @param input
+	 * @return
+	 */
+	@RequestMapping("fuzzyQueryPassInput")
+	public ModelAndView fuzzyQueryPassInput(@RequestParam String input){
+		ModelAndView modelAndView = new ModelAndView("redirect:menu.html");
+		modelAndView.addObject("input", input);
+		
+		return modelAndView;
+	}
+	
+	/**
 	 * 模糊查询
 	 * 
 	 * @param input
 	 * @return
 	 */
-	@RequestMapping("FuzzyQueryByInput")
+	@RequestMapping("fuzzyQueryByInput")
 	@ResponseBody
-	public List<Business> FuzzyQueryByInput(@RequestParam String input){
-		return businessService.FuzzyQueryByInput(input);
+	public List<Business> fuzzyQueryByInput(@RequestParam String input){
+		//System.out.println(input);
+		return businessService.fuzzyQueryByInput(input);
+	}
+	
+	/**
+	 * 存储拼桌用户id和餐馆id
+	 * 
+	 * @param data
+	 * @return
+	 */
+	@RequestMapping("saveShareTableUser")
+	@ResponseBody
+	public String saveShareTableUser(@RequestBody Map<String, String> data){
+		System.out.println(data.get("business_id") + "\n" + data.get("user_id"));
+		
+		if(businessService.saveShareTableUser(data.get("business_id"), data.get("user_id")) == 1){
+			//发送邮件成功，传输消息给前端
+	    	Map<String, Object> map = new HashMap<String, Object>();
+	    	map.put("shareTableMsg", "succeed");
+	    	String json = "";
+	    	try{
+	    	ObjectMapper mapper = new ObjectMapper();
+			json = mapper.writeValueAsString(map);
+			return json;
+	    	} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+    	return null;
+		//return businessService.saveShareTableUser(data.get("business_id"), data.get("user_id"));
 	}
 }

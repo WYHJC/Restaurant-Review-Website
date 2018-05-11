@@ -8,5 +8,6 @@ public interface BusinessService {
 	public Business displayBusinessInfo(String id);              //显示相应餐馆信息
 	public List<Business> selectRecoBusinessByUser(String id);   //根据用户推荐
 	public List<Business> selectGeneralRecoBusiness();           //一般推荐
-	public List<Business> FuzzyQueryByInput(String input);       //模糊查询
+	public List<Business> fuzzyQueryByInput(String input);       //模糊查询
+	public int saveShareTableUser(String business_id, String user_id); //存储拼桌用户id和餐馆id
 }

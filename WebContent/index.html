@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/camera.css">
     <link rel="stylesheet" href="css/jquery.fancybox.css">
-
+	<link href="fsearch/style.css" rel="stylesheet" type="text/css" media="all"/>
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
 
@@ -46,6 +46,13 @@
                 <h1 class="brand_name">
                     <a href="./">Weat</a>
                 </h1>
+                                <div class="s-bar"  >
+	   <form>
+		<input id="search_text" type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+		<input id="search_btn" type="button" value="Search"/>
+	  </form>
+	</div>
+                
             </div>
         </div>
         
@@ -134,6 +141,13 @@ $(document).ready(function(){
 	var pathName = document.location.pathname;
     var index = pathName.substr(1).indexOf("/");
     var result = pathName.substr(0,index+1);
+    
+    //搜索按钮响应事件
+    var btn = document.getElementById("search_btn");
+    btn.onclick = function(){
+    	var input = document.getElementById("search_text").value;
+    	window.location.href="fuzzyQueryPassInput.do?input=" + input;
+    }
 
 	var theUrl="",theData = "";
 	if(uid!="")
@@ -177,6 +191,33 @@ if(uid!=""){
 	grxx.style.display = "none";
 	zx.style.display = "none";
 }});
+
+var  ws;
+window.onload=connect();
+function connect(){
+	var ws;
+	if ('WebSocket' in window) {
+		ws = new WebSocket("ws://"+document.domain+":8080/Resturant_Review_Website/ws");
+	} else if ('MozWebSocket' in window) {
+		ws = new WebSocket("ws://"+window.location.host+"/ws");
+	} else {
+		//如果是低版本的浏览器，则用SockJS这个对象，对应了后台“sockjs/webSocketServer”这个注册器，
+		//它就是用来兼容低版本浏览器的
+		ws = new SockJS("http://localhost:8080/Resturant Review Website/ws/sockjs");
+	}
+	ws.onopen = function (evnt) {
+		var data = new Object;
+		data.content = "okok";
+		ws.send(JSON.stringify(data));
+		alert("okok");
+	};
+	ws.onmessage = function (evnt) {
+	};
+	ws.onerror = function (evnt) {
+	};
+	ws.onclose = function (evnt) {
+	}
+}
 
 </script>
     <!--========================================================
