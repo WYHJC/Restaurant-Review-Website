@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/camera.css">
     <link rel="stylesheet" href="css/jquery.fancybox.css">
 	<link href="fsearch/style.css" rel="stylesheet" type="text/css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
 
@@ -20,6 +21,36 @@
 </head>
 
 <body>
+<div id="fudong" style="border:0px solid #454545;z-index:110; width:20px; height:100px; position: fixed; left: 20px; top: 20px;">
+
+<div class="wrap">
+		<!-- 选项卡标题内容 -->
+		<div class="wrap-top">
+				<div class="tab-left">＜＜</div>
+				<div class="tab-right">＞＞</div>	
+				<div class="cont-tab">
+						<div class="cont-scroll">
+								
+						</div>
+				</div>
+		</div>
+		<!-- 选项卡对应内容 -->
+
+		<div class="wrap-content">
+			
+		</div>
+		<div class="wrap-input">
+										<span>发送内容：</span>
+										<input id = "chatInput" type="" name="" placeholder="发送内容">
+										<botton>发 送</botton>
+		</div>
+
+		
+		
+</div>
+
+</div>
+
 <div class="page">
     <!--========================================================
                               HEADER
@@ -192,33 +223,38 @@ if(uid!=""){
 	zx.style.display = "none";
 }});
 
-var  ws;
+//var  ws;
+/**
 window.onload=connect();
 function connect(){
 	var ws;
 	if ('WebSocket' in window) {
-		ws = new WebSocket("ws://"+document.domain+":8080/Resturant_Review_Website/ws");
+		ws = new WebSocket("ws://" + window.location.host + "/Resturant_Review_Website/ws");
 	} else if ('MozWebSocket' in window) {
-		ws = new WebSocket("ws://"+window.location.host+"/ws");
+		ws = new WebSocket("ws://" + window.location.host + "/Resturant_Review_Website/ws");
 	} else {
-		//如果是低版本的浏览器，则用SockJS这个对象，对应了后台“sockjs/webSocketServer”这个注册器，
+		//如果是低版本的浏览器，则用SockJS这个对象，对应了后台“ws/sockjs”这个注册器，
 		//它就是用来兼容低版本浏览器的
-		ws = new SockJS("http://localhost:8080/Resturant Review Website/ws/sockjs");
+		ws = new SockJS("http://127.0.0.1:8080/Resturant_Review_Website/ws/sockjs");
 	}
 	ws.onopen = function (evnt) {
 		var data = new Object;
+		data.chatRoomName="hahah resturant cmkdmnanvjdsnv";
 		data.content = "okok";
+		data.sender="hjc";
+		data.receiver="xcy";
+		//data.time="2018-5-12 10:18:00"
 		ws.send(JSON.stringify(data));
-		alert("okok");
 	};
 	ws.onmessage = function (evnt) {
+		alert(evnt.time);
 	};
 	ws.onerror = function (evnt) {
 	};
 	ws.onclose = function (evnt) {
 	}
 }
-
+*/
 </script>
     <!--========================================================
                               CONTENT
@@ -400,5 +436,13 @@ function connect(){
 </div>
 
 <script src="js/script.js"></script>
+<script src="js/TABS.js"></script>
+<script type="text/javascript">
+
+var sss = "ddd";
+	$(".wrap").tabs({
+		range: 300
+	})
+</script>
 </body>
 </html>

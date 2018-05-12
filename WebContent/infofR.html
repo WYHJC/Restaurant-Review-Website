@@ -117,7 +117,8 @@ function shareTable(){
 		var pathName = document.location.pathname;
 		var index = pathName.substr(1).indexOf("/");
 		var result = pathName.substr(0,index+1);
-		var map = {business_id: data.id, user_id: uid};
+		var bname = data.name.replace(/\+/g, " ");
+		var map = {business_name: bname, user_id: uid};
 		$.ajax({
 			type: "POST",
 			url: result + "/saveShareTableUser.do",

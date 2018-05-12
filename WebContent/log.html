@@ -72,6 +72,7 @@ function login(){
 		success: function(data){
 			if(data != ''){
 				setCookie('user_id', data.id, 1);
+				setCookie('user_name', data.name, 1);
 				window.location.href=result+'/index.html';
 
 			}else{

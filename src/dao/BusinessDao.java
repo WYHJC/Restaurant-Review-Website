@@ -11,5 +11,6 @@ public interface BusinessDao {
 	public List<Business> selectRecoBusinessByUser(String id);
 	public List<Business> selectGeneralRecoBusiness();
 	public List<Business> selectBusinessByFuzzyQuery(String input);
-	public int insertShareTable(String business_id, String user_id);
+	public int insertShareTable(String business_name, String user_id);
+	public List<String> selectChatRoomsByUser(@Param("user_id")String user_id);
 }

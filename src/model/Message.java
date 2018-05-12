@@ -3,18 +3,27 @@ package model;
 import java.sql.Timestamp;
 
 public class Message {
-	private String id;
+	private String chatRoomName;
+	private String type;          //判断客户端发送来的消息是初始登录还是聊天消息
 	private String content;
 	private String sender;
 	private String receiver;
 	private Timestamp time;
 	
-	public String getID(){
-		return this.id;
+	public String getChatRoomName(){
+		return this.chatRoomName;
 	}
 	
-	public void setID(String id){
-		this.id = id;
+	public void setChatRoomName(String chatRoomName){
+		this.chatRoomName = chatRoomName;
+	}
+	
+	public String getType(){
+		return this.type;
+	}
+	
+	public void setType(String type){
+		this.type = type;
 	}
 	
 	public String getContent(){

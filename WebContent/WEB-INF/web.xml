@@ -68,10 +68,10 @@
     <servlet-name>springMvc</servlet-name>  
     <url-pattern>*.do</url-pattern>  
   </servlet-mapping>  
-  <servlet-mapping>  
+ <!--   <servlet-mapping>  
         <servlet-name>springMvc</servlet-name>  
         <url-pattern>/</url-pattern>  
-</servlet-mapping>
+</servlet-mapping>-->
   <!--   
           Session是由浏览器和服务器之间维护的。  
           Session超时理解为：浏览器和服务器之间创建了一个Session，由于客户端长时间（休眠时间）没有与服务器交互，  

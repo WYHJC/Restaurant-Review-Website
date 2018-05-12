@@ -62,7 +62,12 @@ public class BusinessServiceImpl implements BusinessService{
 	}
 	
 	@Override
-	public int saveShareTableUser(String business_id, String user_id){
-		return businessDao.insertShareTable(business_id, user_id);
+	public int saveShareTableUser(String business_name, String user_id){
+		return businessDao.insertShareTable(business_name, user_id);
+	}
+	
+	@Override
+	public List<String> getChatRooms(String user_id){
+		return businessDao.selectChatRoomsByUser(user_id);
 	}
 }

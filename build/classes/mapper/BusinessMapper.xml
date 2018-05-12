@@ -32,4 +32,8 @@ order by stars desc limit 10;
    INSERT INTO share_table VALUES(#{0},#{1});
   </insert>
   
+  <select id="selectChatRoomsByUser" resultType="String">
+  SELECT business_name FROM share_table WHERE user_id = #{user_id};
+  </select>
+  
 </mapper>

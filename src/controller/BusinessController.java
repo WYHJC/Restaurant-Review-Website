@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import model.Business;
 import service.BusinessService;
+import util.MessageEncodeUtil;
 
 @Controller
 public class BusinessController {
@@ -41,16 +39,9 @@ public class BusinessController {
 		ModelAndView modelAndView = new ModelAndView("redirect:infofR.html");
 		Business businessInfo = businessService.displayBusinessInfo(id);
 		
-		try {
-			//将business对象转为jackson json
-			ObjectMapper mapper = new ObjectMapper();
-			String json = mapper.writeValueAsString(businessInfo);
-			modelAndView.addObject("businessInfo", json);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		//调用工具类编码
+		String json = MessageEncodeUtil.encode(businessInfo);
+		modelAndView.addObject("businessInfo", json);
 				
 		return modelAndView;
 	}
@@ -103,24 +94,24 @@ public class BusinessController {
 	@RequestMapping("saveShareTableUser")
 	@ResponseBody
 	public String saveShareTableUser(@RequestBody Map<String, String> data){
-		System.out.println(data.get("business_id") + "\n" + data.get("user_id"));
+		//System.out.println(data.get("business_name") + "\n" + data.get("user_id"));
 		
-		if(businessService.saveShareTableUser(data.get("business_id"), data.get("user_id")) == 1){
+		if(businessService.saveShareTableUser(data.get("business_name"), data.get("user_id")) == 1){
 			//发送邮件成功，传输消息给前端
 	    	Map<String, Object> map = new HashMap<String, Object>();
 	    	map.put("shareTableMsg", "succeed");
-	    	String json = "";
-	    	try{
-	    	ObjectMapper mapper = new ObjectMapper();
-			json = mapper.writeValueAsString(map);
-			return json;
-	    	} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	    	String json = MessageEncodeUtil.encode(map);
+	    	return json;
 		}
 		
     	return null;
 		//return businessService.saveShareTableUser(data.get("business_id"), data.get("user_id"));
+	}
+	
+	@RequestMapping("getChatRooms")
+	@ResponseBody
+	public List<String> getChatRooms(@RequestParam String user_id){
+		System.out.println(user_id);
+		return businessService.getChatRooms(user_id);
 	}
 }

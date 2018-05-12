@@ -20,8 +20,8 @@ public class ChatController implements WebSocketConfigurer {
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 		// TODO Auto-generated method stub
-		registry.addHandler(handler,"/ws").addInterceptors(new ChatWebSocketInterceptor());
-        registry.addHandler(handler, "/ws/sockjs").addInterceptors(new ChatWebSocketInterceptor()).withSockJS();
+		registry.addHandler(handler,"/ws.do").addInterceptors(new ChatWebSocketInterceptor());
+        registry.addHandler(handler, "/ws/sockjs.do").addInterceptors(new ChatWebSocketInterceptor()).withSockJS();
 	}
 	
 }
