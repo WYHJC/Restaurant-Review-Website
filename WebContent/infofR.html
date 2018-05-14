@@ -2,31 +2,36 @@
 <html lang="en">
 
 <head>
-    <title>InformationR</title>
-    <meta charset="utf-8">
-    <meta name="format-detection" content="telephone=no"/>
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/grid.css">
-    <link rel="stylesheet" href="css/style.css">
+<title>InformationR</title>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no" />
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/grid.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery-migrate-1.2.1.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery-migrate-1.2.1.js"></script>
 
 
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="application/x-javascript">
+	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+</script>
 <!-- Custom Theme files -->
-<link href="finf/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="finf/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="finf/css/bootstrap.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link href="finf/css/style.css" rel="stylesheet" type="text/css"
+	media="all" />
 <!-- js -->
 <script src="finf/js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <!-- animation-effect -->
-<link href="finf/css/animate.min.css" rel="stylesheet"> 
+<link href="finf/css/animate.min.css" rel="stylesheet">
 <script src="finf/js/wow.min.js"></script>
 <script>
- new WOW().init();
+	new WOW().init();
 </script>
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
     <html class="lt-ie9">
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/..">
@@ -36,331 +41,647 @@
     </div>
     <script src="js/html5shiv.js"></script>
     <![endif]-->
- 
-    <script src='js/device.min.js'></script> 
-    
-<style>
-/* body,li,p,ul { 
-    margin: 0;
-    padding: 0;
-    font: 12px/1 Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
-}
-ul, li, ol { list-style: none; } */
 
-/*星星样式*/
-/* .content{ width:600px; margin:0 auto; padding-top:20px;}
-.title{ font-size:14px; background:#dfdfdf; padding:10px; margin-bottom:10px;}
-.block{ width:100%; margin:0 0 20px 0; padding-top:10px; padding-left:50px; line-height:21px;}
-.block .star_score{ float:left;}
-.star_list{height:21px;margin:50px; line-height:21px;}
-.block p,.block .attitude{ padding-left:20px; line-height:21px; display:inline-block;}
-.block p span{ color:#C00; font-size:16px; font-family:Georgia, "Times New Roman", Times, serif;}
-.star_score { background:url(images/stark2.png); width:160px; height:21px;  position:relative; }
-.star_score a{ height:21px; display:block; text-indent:-999em; position:absolute;left:0;}
-.star_score a:hover{ background:url(images/stars2.png);left:0;}
-.star_score a.clibg{ background:url(images/stars2.png);left:0;}
-#starttwo .star_score { background:url(images/starky.png);}
-#starttwo .star_score a:hover{ background:url(images/starsy.png);left:0;}
-#starttwo .star_score a.clibg{ background:url(images/starsy.png);left:0;} */
-/*星星样式*/
-.show_number{ padding-left:0px; padding-top:20px;}
-.show_number li{ width:240px;  padding:10px; margin-right:5px; margin-bottom:20px;}
-.atar_Show{background:url(images/stark2.png); width:160px; height:21px;  position:relative; float:left; }
-.atar_Show p{ background:url(images/stars2.png);left:0; height:21px; width:134px;}
-.show_number li span{ display:inline-block; line-height:21px;}
+<script src='js/device.min.js'></script>
+
+<style>
+/*打分星星样式*/
+.star_score {
+	background: url(images/stark2.png);
+	width: 160px;
+	height: 21px;
+	position: relative;
+}
+
+.star_score a {
+	height: 21px;
+	display: block;
+	text-indent: -999em;
+	position: absolute;
+	left: 0;
+}
+
+.star_score a:hover {
+	background: url(images/stars2.png);
+	left: 0;
+}
+
+.star_score a.clibg {
+	background: url(images/stars2.png);
+	left: 0;
+}
+/*显示星星样式*/
+.show_number {
+	padding-left: 0px;
+	padding-top: 20px;
+}
+
+.show_number li {
+	width: 240px;
+	padding: 10px;
+	margin-right: 5px;
+	margin-bottom: 20px;
+}
+
+.atar_Show {
+	background: url(images/stark2.png);
+	width: 160px;
+	height: 21px;
+	position: relative;
+	float: left;
+}
+
+.atar_Show p {
+	background: url(images/stars2.png);
+	left: 0;
+	height: 21px;
+	width: 134px;
+}
+
+.show_number li span {
+	display: inline-block;
+	line-height: 21px;
+}
 </style>
-    
+
 </head>
 
 <body>
-<script type="text/javascript">
-<!-- 正则表达式提取存储的json字符串 -->
-function GetQueryString(name) {
-	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
-	var r = window.location.search.substr(1).match(reg);
-	if (r!=null) return unescape(r[2]); return null;
+<script src="js/TABS.js"></script>
+	<script type="text/javascript">
+	var pathName = document.location.pathname;
+	var index = pathName.substr(1).indexOf("/");
+	var result1 = pathName.substr(0, index + 1);
+	
+	var uid = getCookie("user_id");
+
+	function logout(name) {
+		clearCookie(name);
+		//window.location.href='#';
+		location.reload();
 	}
 
-var uid = getCookie("user_id");
+	function clearCookie(name) {
+		setCookie(name, "", -1);
+	}
 
-function logout(name){
-	clearCookie(name);
-	//window.location.href='#';
-	location.reload();
-}
-
-function clearCookie(name) {  
-    setCookie(name, "", -1);  
-} 
-
-function getCookie(c_name)
-{
-if (document.cookie.length>0)
-  {
-  c_start=document.cookie.indexOf(c_name + "=")
-  if (c_start!=-1)
-    { 
-    c_start=c_start + c_name.length+1 
-    c_end=document.cookie.indexOf(";",c_start)
-    if (c_end==-1) c_end=document.cookie.length
-    return unescape(document.cookie.substring(c_start,c_end))
-    } 
-  }
-return ""
-}
-
-//将json字符串转为json对象
-var data = JSON.parse(GetQueryString("businessInfo"));
-
-function shareTable(){
-	if(uid!=""){
-		var pathName = document.location.pathname;
-		var index = pathName.substr(1).indexOf("/");
-		var result = pathName.substr(0,index+1);
-		var bname = data.name.replace(/\+/g, " ");
-		var map = {business_name: bname, user_id: uid};
-		$.ajax({
-			type: "POST",
-			url: result + "/saveShareTableUser.do",
-			contentType: "application/json",
-			data: JSON.stringify(map),
-			dataType: "json",
-			success: function(data){
-				if(data.shareTableMsg == 'succeed'){
-					alert("You have successfully shared the table!")
-				}else{
-					alert("Failed to share table!");
-				}
-			},
-			error:function(data){  
-				//alert(data.regMsg);
+	function getCookie(c_name) {
+		if (document.cookie.length > 0) {
+			c_start = document.cookie.indexOf(c_name + "=")
+			if (c_start != -1) {
+				c_start = c_start + c_name.length + 1
+				c_end = document.cookie.indexOf(";", c_start)
+				if (c_end == -1)
+					c_end = document.cookie.length
+				return unescape(document.cookie.substring(c_start,
+						c_end))
 			}
-		});
-	}else{
-		alert("Please login first!")
-	}
-}
-
-$(document).ready(function(){ 
-	if(uid!=""){
-		dl.style.display = "none";
-		grxx.style.display = "";
-		zx.style.display = "";
-
-	}else{
-		dl.style.display = "";
-		grxx.style.display = "none";
-		zx.style.display = "none";
+		}
+		return ""
 	}
 	
-	document.getElementById("business_name").innerText=data.name.replace(/\+/g, " ");
-	document.getElementById("business_address").innerText=' Located on : ' + data.address.replace(/\+/g, " ");
-	document.getElementById("business_reviews").innerText=' Review counts : ' + data.review_count;
-	});
-</script>
+	<!-- 正则表达式提取存储的json字符串 -->
+		function GetQueryString(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null)
+				return unescape(r[2]);
+			return null;
+		}
+		
+		//将json字符串转为json对象
+		var data = JSON.parse(GetQueryString("businessInfo"));
+		
+		$(document).ready(function() {
+			if (uid != "") {
+				dl.style.display = "none";
+				grxx.style.display = "";
+				zx.style.display = "";
 
-<div class="page">
-    <!--========================================================
+			} else {
+				dl.style.display = "";
+				grxx.style.display = "none";
+				zx.style.display = "none";
+			}
+			
+			document.getElementById("business_name").innerText = data.name.replace(/\+/g, " ");
+			document.getElementById("business_address").innerText = ' Located on : '+ data.address.replace(/\+/g, " ");
+			document.getElementById("business_reviews").innerText = ' Review counts : '+ data.review_count;
+			
+			var map = {business_name: data.name.replace(/\+/g, " "), user_id: uid};
+			
+			if(uid != ""){
+				$.ajax({
+					type : "POST",
+					url : result1 + "/ifUserShareBusiness.do",
+					contentType : "application/json",
+					data : JSON.stringify(map),
+					success : function(data) {
+						if(data != ''){
+							document.getElementById("shareTableButton").value="Cancel Shared";
+						}
+					}
+				});
+			}
+			});
+	</script>
+	
+	<div id="fudong" style="border:0px solid #454545;z-index:110; width:20px; height:100px; position: fixed; left: 20px; top: 20px;display:none">
+
+<div class="wrap">
+		<!-- 选项卡标题内容 -->
+		<div class="wrap-top">
+				<div class="tab-left">＜＜</div>
+				
+				<div class="tab-del" id ='tabDel'>
+				
+				<a  class="del">X</a>
+				
+				</div>
+				<div class="cont-tab">
+						<div class="cont-scroll">
+								
+						</div>
+				</div>
+				
+		</div>
+		<!-- 选项卡对应内容 -->
+
+		<div class="wrap-content">
+			
+		</div>
+		<div class="wrap-input">
+										<span>发送内容：</span>
+										<input id = "chatInput" type="" name="" placeholder="发送内容">
+										<botton>发 送</botton>
+		</div>
+
+		
+		
+</div>
+
+</div>
+
+	<div class="page">
+		<!--========================================================
                               HEADER
     =========================================================-->
-    <header>
+		<header>
 
-        <div id="stuck_container" class="stuck_container">
-            <div class="container">
+			<div id="stuck_container" class="stuck_container">
+				<div class="container">
 
-                <div class="brand">
-                    <h1 class="brand_name">
-                        <a href="./">Weat</a>
-                    </h1>
-                </div>
+					<div class="brand">
+						<h1 class="brand_name">
+							<a href="./">Weat</a>
+						</h1>
+					</div>
 
-               <nav class="nav">
-                <div class="nav_title"></div>
-                <a class="sf-menu-toggle fa fa-bars" href="#"></a>
-                <ul class="sf-menu">
-                    <li>
-                        <a href="./">Home page</a>
-                    </li>
-                    <li>
-                        <a href="register.html">Register</a>
-                    </li>
-                    <li id="dl">
-                        <a href="log.html">Log in</a>
-                    </li>
-                    <li id="zx" >
-                        <a href="javascript:logout('user_id')">Log out</a>
-                    </li>
-                    <li id="grxx">
-                       <a href="index_fuser.html">Profile</a>
-                        <ul>
-                                <li>
-                                    <a href="comment_fuser.html">My reviews</a>
-                                </li>
-                                <li>
-                                    <a href="address_fuser.html">My address</a>
-                                </li>
-                                <li>
-                                    <a href="information_fuser.html">My information</a>
-                                </li>
-                            </ul>
-                    </li>
-                    <li>
-                         <a href="connect_fuser.html">Contact us</a>
-                    </li>
-                    <li>
-                        <a href="#">Search</a>
-                    </li>
-                </ul>
-            </nav>            
-        </div>
-        </div>
+					<nav class="nav">
+						<div class="nav_title"></div>
+						<a class="sf-menu-toggle fa fa-bars" href="#"></a>
+						<ul class="sf-menu">
+							<li><a href="./">Home page</a></li>
+							<li><a href="register.html">Register</a></li>
+							<li id="dl"><a href="log.html">Log in</a></li>
+							<li id="zx"><a href="javascript:logout('user_id')">Log
+									out</a></li>
+							<li id="grxx"><a href="index_fuser.html">Profile</a>
+								<ul>
+									<li><a href="comment_fuser.html">My reviews</a></li>
+									<li><a href="address_fuser.html">My address</a></li>
+									<li><a href="information_fuser.html">My information</a></li>
+								</ul></li>
+								 <li>
+                    <a href='javascript:showFudong()'>Chat Room</a>
+                    </li> 
+							<li><a href="connect_fuser.html">Contact us</a></li>
+							<li><a href="#">Search</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
 
-    </header>
-
-    <!--========================================================
+		</header>
+		<!--========================================================
                               CONTENT
-    =========================================================-->    
-    <!-- single -->
-	<div class="single">
-	<div class="container">
-		<!-- <h1 class="animated fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">餐厅名称</h1> -->
-		<div class="single-left wow fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">
-		<!-- <p>Located on :<span>海淀区北下关 </span></p><p>Located on :<span>海淀区北下关 </span></p> -->
-			<img src="images/page-1_img01.jpg" alt=" " class="img-responsive" />
-		</div>
-		<div class="single-right wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
-			<!-- <h2 id="business_name">12</h2> -->
-			<h1 id="business_name" class="animated fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">餐厅名称</h1>
+    =========================================================-->
+		<!-- single -->
+		<div class="single">
+			<div class="container">
+				<!-- <h1 class="animated fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">餐厅名称</h1> -->
+				<div class="single-left wow fadeInLeftBig"
+					data-wow-duration="1000ms" data-wow-delay="300ms">
+					<!-- <p>Located on :<span>海淀区北下关 </span></p><p>Located on :<span>海淀区北下关 </span></p> -->
+					<img src="images/page-1_img01.jpg" alt=" " class="img-responsive" />
+				</div>
+				<div class="single-right wow fadeInRightBig"
+					data-wow-duration="1000ms" data-wow-delay="300ms">
+					<!-- <h2 id="business_name">12</h2> -->
+					<h1 id="business_name" class="animated fadeInLeftBig"
+						data-wow-duration="1000ms" data-wow-delay="300ms">餐厅名称</h1>
 
-    <ul class="show_number clearfix">
-       <li>
-        <div class="atar_Show">
-          <p title="3.5"></p>
-        </div>
-        <span></span>
-       </li>
-    </ul>
-    		<img src="images/zb.png" style="float:left;width:24px;height:24px;" /><p id="business_address">&nbsp;Located on :</p>
-			<!-- <img src="images/sj.png" style="float:left;width:18px;height:18px;" /><p>&nbsp;开业时间:9：00~21：00</p> -->
-			<br>
-			<img src="images/pl.png" style="float:left;width:24px;height:24px;" /><p id="business_reviews">&nbsp;评论总数 :&nbsp;3</p>
-			<input type="button" value="Preengage" class="btn btn-lg btn-primary" style="width:200px;">
-			<input type="button" value="Share Table"  onclick="shareTable();" class="btn btn-lg btn-primary" style="width:200px;">
-    <script>
-    //显示分数
-      $(".show_number li p").each(function(index, element) {
-        var num=$(this).attr("title");
-        var www=num*2*16;//
-        //$(this).parent(".atar_Show").siblings("span").text(num+" score");
-        $(this).css("width",www);
-    });
-    </script>
+					<ul class="show_number clearfix">
+						<li>
+							<div class="atar_Show">
+								<p title="3.5"></p>
+							</div> <span></span>
+						</li>
+					</ul>
+					<img src="images/zb.png"
+						style="float: left; width: 24px; height: 24px;" />
+					<p id="business_address">&nbsp;Located on :</p>
+					<!-- <img src="images/sj.png" style="float:left;width:18px;height:18px;" /><p>&nbsp;开业时间:9：00~21：00</p> -->
+					<br> <img src="images/pl.png"
+						style="float: left; width: 24px; height: 24px;" />
+					<p id="business_reviews">&nbsp;评论总数 :&nbsp;3</p>
+					<input type="button" value="Preengage" class="btn btn-lg btn-primary" style="width:200px;">
+			<input id ="shareTableButton" type="button" value="Share Table"  class="btn btn-lg btn-primary" style="width:200px;">
+  <script>
+						//显示分数
+						$(".show_number li p").each(function(index, element) {
+							var num = $(this).attr("title");
+							var www = num * 2 * 16;//
+							//$(this).parent(".atar_Show").siblings("span").text(num+" score");
+							$(this).css("width", www);
+						});
+					</script>
+					
 
-			
-			<p><span></span>
-			<span></span></p>
-		</div>
-		<div class="clearfix"> </div>
-		<!-- <p class="tortor wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">There are many variations of passages of Lorem Ipsum available,
+
+					<p>
+						<span></span> <span></span>
+					</p>
+				</div>
+				<div class="clearfix"></div>
+				<!-- <p class="tortor wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">There are many variations of passages of Lorem Ipsum available,
 			but the majority have suffered alteration in some form, by injected humour,
 			or randomised words which don't look even slightly believable. If you are going
 			to use a passage.Nulla Quis lorum nisl tempus convallis quis ac lactus.Sed porttitorlactus nibh
 			eget tortor risus.Nulla porttitor accumsan tincidunt.</p>  -->
 
-		<div class="three-com">
-			<h3 class="wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms"><label>Comments</label> <span>3 comments all</span> </h3>
-			<div class="tom-grid wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-				<div class="tom">
-				<img src="images/co.png" alt=" " />
-				</div>
-				<div class="tom-right">
-					<div class="Hardy">
-					
-						<h4>Tom Hardy</h4>
-						<p><label>10 September 2015</label></p>
-					</div>
-					<div class="reply">
-						<a href="#">Reply</a>
-					</div>
-					<div class="clearfix"> </div>
-					<p class="lorem">There are many variations of passages of Lorem Ipsum available,
-					but the majority have suffered alteration in some form, by injected humour, 
-					or randomised words which don't.</p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="tom-grid humour wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-				<div class="tom">
-					<img src="images/co.png" alt=" " />
-				</div>
-				<div class="tom-right">
-					<div class="Hardy">
-						<h4>Prad Pitt</h4>
-						<p><label>10 September 2015</label></p>
-					</div>
-					<div class="reply">
-						<a href="#">Reply</a>
-					</div>
-					<div class="clearfix"> </div>
-					<p class="lorem">There are many variations of passages of Lorem Ipsum available,
-					but the majority have suffered alteration in some form, by injected humour, 
-					or randomised words which don't.</p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="tom-grid wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-				<div class="tom">
-					<img src="images/co.png" alt=" " />
-				</div>
-				<div class="tom-right">
-					<div class="Hardy">
-						<h4>Tom Cruis</h4>
-						<p><label>10 September 2015</label></p>
-					</div>
-					<div class="reply">
-						<a href="#">Reply</a>
-					</div>
-					<div class="clearfix"> </div>
-					<p class="lorem">There are many variations of passages of Lorem Ipsum available,
-					but the majority have suffered alteration in some form, by injected humour, 
-					or randomised words which don't.</p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-		<div class="leave-comment wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-			<h3>Leave your comment</h3>
-			<p>Suspendisse tempor tellus sed nisl semper, quis condimentum turpis pharetra.</p>
-			<form>
-				<input type="text" placeholder="Name" required=" ">			           					   
-				<input type="text" placeholder="Email" required=" ">
-				<input type="text" placeholder="Your Website" required=" ">
-				<textarea placeholder="Message" required=" "></textarea>
-				<input type="submit" value="Add Comment">
-				<div class="clearfix"> </div>
-			</form>
-		</div>
-	</div>
-	</div>
+                     
+				<!--========================================================
+                              Comment
+    =========================================================-->
+				<script>	
+			
+					//alert(data.id);
+					var bid = data.id;
+					//alert()
+					$.ajax({
+						type : "GET",
+						url : result1 + "/displayComment.do",
+						contentType : "application/json",
+						data : "business_id="+bid,
+						success : function(data) {
+							if (data != ""){
+															
+								for(var i=1; i<=data.length; i++ ){
+									var index = Math.ceil(i/3);
+									document.getElementById("list").innerHTML+='<div id="list'+i+'" class="box clearfix"></div>';
+									document.getElementById("list" + index).innerHTML +=
+									'<div class="content">'+
+									'<div class="main">'+
+										'<div class="tom-right">'+
+											'<div class="Hardy">'+
+												'<h4 class="name" id="name'+i+
+												'">Prad Pitt</h4>'+
+												'<p>'+
+												'<lable id="date'+i+
+												'">10 September 2015</lable>'+
+												'</p>'+
+												'</div>'+
+												'<ul class="show_number clearfix">'+
+												'<li>'+
+													'<div class="atar_Show">'+
+														'<p title="'+data[i-1].stars+
+														'"></p>'+
+													'</div> <span></span>'+
+												'</li>'+
+											'</ul>'+
+											'<script>'+
+											'$(".show_number li p").each(function(index, element) {'+
+												'var num = $(this).attr("title");'+
+												'var www = num * 2 * 16;'+
+												'$(this).css("width", www);'+
+											'});'+
+											'<'+
+											'/script>'+
+											'<div class="clearfix"></div>'+
+											'<p class="lorem" id="text'+i+
+											'")>There are many variations of passages ofxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>'+
+											'<br>'+
+											'<div class="tom-grid humour wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms"></div>'+
+										'</div>'+
+									'</div>'+
+									'</div>';
+									
+									$(".show_number li p").each(function(index, element) {
+										var num = $(this).attr("title");
+										var www = num * 2 * 16;//
+									
+										$(this).css("width", www);
+									});
+									
+									document.getElementById("name"+i).innerText = data[i-1].user_name;
+									
+									document.getElementById("text"+i).innerText = data[i-1].text;
+									var date = timestampToTime(data[i-1].date);
+							    	document.getElementById("date"+i).innerText = "date:"+date;
+									
+						
+								}
+							}
+						}
 
-    <!--========================================================
+					});
+				</script>
+
+				<div class="three-com">
+					<h3 class="wow fadeInUp" data-wow-duration="1000ms"
+						data-wow-delay="300ms">
+						评论 <span>on</span> <label>Donec volutpat ligula non
+							dapibus volutpat</label>
+					</h3>
+				</div>
+
+				<div class="comments" id="list">
+
+				</div>
+
+				
+				<!--========================================================
+   					publish
+=========================================================-->
+				<div class="leave-comment wow fadeInUp" data-wow-duration="1000ms"
+					data-wow-delay="300ms">
+					<h3>Leave your comment</h3>
+				</div>
+
+				<div id="startone" class="block clearfix">
+					<div class="star_score"></div>
+					<p style="float: left;">
+						您的评分：<span class="fenshu"></span> 分
+					</p>
+					<div class="attitude"></div>
+				</div>
+				<script type="text/javascript" src="js/startScore.js"></script>
+				<script>
+					scoreFun($("#startone"))
+				</script>
+
+
+				<div id="listfreply">
+
+					<div class="text-box">
+						<textarea id="text" required=" " maxlength="140" cols="130"
+							rows="6"></textarea>
+						<button class="btn1">回 复</button>
+					</div>
+					<div class="clearfix"></div>
+
+				</div>
+
+				<script type="text/javascript">
+					var uid = getCookie("user_id");
+					var list = document.getElementById('listfreply')
+					var lis = list.children;
+					//删除节点
+					function removeNode(el1) {
+						el1.parentNode.removeChild(el1)
+					}
+
+					//点赞功能
+					function praiseBox(box, el1) {
+						var praiseElement = box
+								.getElementsByClassName('praises-total')[0]
+						var oldTotal = parseInt(praiseElement
+								.getAttribute('total'))
+						var newTotal;
+						if (el1.innerHTML == '赞') {
+							newTotal = oldTotal + 1
+							praiseElement.innerHTML = newTotal == 1 ? '我觉得很赞'
+									: '我和' + oldTotal + '个人觉得很赞'
+							el1.innerHTML = '取消赞'
+						} else {
+							newTotal = oldTotal - 1
+							praiseElement.innerHTML = newTotal == 0 ? ''
+									: newTotal + '个人觉得很赞'
+							el1.innerHTML = '赞'
+						}
+						praiseElement.style.display = newTotal > 0 ? 'block'
+								: 'none'
+						praiseElement.setAttribute('total', newTotal)
+					}
+					//发表评论
+					function insertComment(box) {
+
+						var textarea = box.getElementsByTagName('textarea')[0]
+						var list = box.getElementsByClassName('comments')[0]
+						var div = document.createElement('div')
+						div.className = 'box clearfix'
+						var html = '<a class="close" href="javascript:;">×</a>'
+								+ '<div class="tom"><img src="images/co.png" alt=" " /></div>'
+								+ '<div class="content">'
+								+ '<div class="main">'
+								+ '<div class="tom-right">'
+								+ '<div class="Hardy">' + '<h4>Prad Pitt</h4>'
+								+ '<p><label>10 September 2015</label></p>'
+								+ '</div>' + '<div class="clearfix"> </div>'
+								+ '<p class="lorem">'
+								+ textarea.value
+								+ '</p>'
+								+ '</div>'
+								+ '</div>'
+								+ '<div class="info clearfix">'
+								+ '<span class="time">'
+								+ getTime()
+								+ '</span>'
+								+ '<a class="praise" href="javascript:;">赞</a>'
+								+ '</div>'
+								+ '<div class="praises-total" total="0" style="display: block;">0个人觉得很赞</div>'
+								+ '<div class="comment-list">'
+								+ '<div class="comment-box clearfix" user="self">'
+								+ '<div class="comment-content">'
+								+ '</div>'
+								+ '</div>'
+								+ '</div>'
+								+ '<div class="text-box">'
+								+ '<textarea class="comment" autocomplete="off" maxlength="140" cols="130">评论…</textarea>'
+								+ '<button class="btn ">回 复</button><span class="word">'
+								+ '<span class="length">0</span>/140</span>'
+								+ '</div>'
+								+ '<div class="tom-grid humour wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms"></div>'
+								+ '</div>' + '</div>'
+						div.innerHTML = html
+						list.appendChild(div)
+						textarea.value = ''
+						textarea.onblur()
+
+					}
+
+					function toTwo(a) {
+						if (a < 10) {
+							return '0' + a;
+						} else {
+							return '' + a
+						}
+					}
+					function getTime() {
+						var time = new Date()
+						var year = time.getFullYear()
+						var month = time.getMonth() + 1
+						var date = time.getDate()
+						var h = time.getHours()
+						var m = time.getMinutes()
+						var s = time.getSeconds()
+						return year + '-' + toTwo(month) + '-' + date + ' '
+								+ toTwo(h) + ':' + toTwo(m)
+					}
+					//赞回复
+					function praiseReplay(el1) {
+						var oldTotal = parseInt(el1.getAttribute('total'))
+						var my = parseInt(el1.getAttribute('my'))
+						var newTotal;
+						if (my == 0) {
+							newTotal = oldTotal + 1;
+							el1.innerHTML = newTotal + ' 取消赞'
+							el1.setAttribute('total', newTotal)
+							el1.setAttribute('my', 1)
+						} else {
+							newTotal = oldTotal - 1;
+							el1.innerHTML = newTotal == 0 ? '赞' : newTotal
+									+ ' 赞'
+							el1.setAttribute('total', newTotal)
+							el1.setAttribute('my', 0)
+						}
+						el1.style.display = newTotal == 0 ? '' : 'inline-block'
+					}
+
+					//操作回复
+					function operateReplay(el1) {
+						var commentBox = el1.parentNode.parentNode.parentNode
+						var box = commentBox.parentNode.parentNode.parentNode
+						var textarea = box.getElementsByTagName('textarea')[0]
+						var user = commentBox.getElementsByClassName('user')[0]
+						var txt = el1.innerHTML
+						if (txt == '回复') {
+							textarea.onfocus()
+							textarea.value = '回复' + user.innerHTML
+							textarea.onkeyup = function() {
+								var len = this.value.length
+										- user.innerHTML.length - 2;
+								var p = this.parentNode;
+								var btn = p.children[1]
+								var word = p.children[2]
+								if (len == 0) {
+									btn.className = 'btn1 btn-off'
+								} else {
+									btn.className = 'btn1'
+								}
+								word.innerHTML = len + '/140'
+							}
+						} else {
+							removeNode(commentBox)
+						}
+					}
+
+					for (var i = 0; i < lis.length; i++) {
+						lis[i].onclick = function(e1) {
+							var e1 = e1 || window.event
+							var el1 = e1.srcElement || e1.target
+							switch (el1.className) {
+							case 'close':
+								removeNode(el1.parentNode);
+								break;
+							//赞分享
+							case 'praise':
+								praiseBox(el1.parentNode.parentNode.parentNode,
+										el1);
+								break;
+							//发表评论
+							case 'btn1': {
+
+								insertComment(el1.parentNode.parentNode.parentNode);
+
+							}
+								break;
+							//赞回复
+							case 'comment-praise':
+								praiseReplay(el1);
+								break;
+							//操作回复
+							case 'comment-operate':
+								operateReplay(el1);
+								break;
+							}
+						}
+
+						//评论功能
+						/**var textarea = lis[i].getElementsByTagName('textarea')[0]
+						textarea.onfocus = function() {
+							this.parentNode.className = 'text-box text-box-on'
+							this.value = this.value == '评论…' ? '' : this.value
+							this.onkeyup()
+						}
+						textarea.onblur = function() {
+							if (this.value == '') {
+								this.parentNode.className = 'text-box'
+								this.value = '评论…'
+							}
+						}
+						textarea.onkeyup = function() {
+							var len = this.value.length;
+							var p = this.parentNode;
+							var btn = p.children[1]
+							var word = p.children[2]
+							if (len == 0) {
+								btn.className = 'btn1 btn-off'
+							} else {
+								btn.className = 'btn1'
+							}
+							word.innerHTML = len + '/140'
+						}*/
+					}
+				</script>
+			</div>
+		</div>
+		<!--========================================================
                               FOOTER
     =========================================================-->
-    <footer>
-        <div class="container">
-            <ul class="socials">
-                <li><a href="#" class="fa fa-facebook"></a></li>
-                <li><a href="#" class="fa fa-tumblr"></a></li>
-                <li><a href="#" class="fa fa-google-plus"></a></li>
-            </ul>
-            <div class="copyright">© <span id="copyright-year"></span> |
-                <a href="#">Privacy Policy</a>
-            </div>
-        </div>
-        <div class="tm"><a href="#"><img src="images/TM_logo.png" alt=""></a></div>
-    </footer>
-</div>
+		<footer>
+			<div class="container">
+				<ul class="socials">
+					<li><a href="#" class="fa fa-facebook"></a></li>
+					<li><a href="#" class="fa fa-tumblr"></a></li>
+					<li><a href="#" class="fa fa-google-plus"></a></li>
+				</ul>
+				<div class="copyright">
+					© <span id="copyright-year"></span> | <a href="#">Privacy
+						Policy</a>
+				</div>
+			</div>
+			<div class="tm">
+				<a href="#"><img src="images/TM_logo.png" alt=""></a>
+			</div>
+		</footer>
+	</div>
 
-<script src="js/script.js"></script>
+	<script src="js/script.js"></script>
+<script type="text/javascript">
+function showFudong(){
+	$('#fudong').fadeIn();
+}
+
+$('#tabDel').on('click',function(){
+	
+	$('#fudong').fadeOut()
+})
+
+	$(".wrap").tabs({
+		range: 300
+	})
+</script>
 </body>
 </html>

@@ -66,7 +66,7 @@ public class BusinessController {
 	 */
 	@RequestMapping("fuzzyQueryPassInput")
 	public ModelAndView fuzzyQueryPassInput(@RequestParam String input){
-		ModelAndView modelAndView = new ModelAndView("redirect:menu.html");
+		ModelAndView modelAndView = new ModelAndView("redirect:Rforserach.html");
 		modelAndView.addObject("input", input);
 		
 		return modelAndView;
@@ -97,7 +97,6 @@ public class BusinessController {
 		//System.out.println(data.get("business_name") + "\n" + data.get("user_id"));
 		
 		if(businessService.saveShareTableUser(data.get("business_name"), data.get("user_id")) == 1){
-			//发送邮件成功，传输消息给前端
 	    	Map<String, Object> map = new HashMap<String, Object>();
 	    	map.put("shareTableMsg", "succeed");
 	    	String json = MessageEncodeUtil.encode(map);
@@ -108,10 +107,49 @@ public class BusinessController {
 		//return businessService.saveShareTableUser(data.get("business_id"), data.get("user_id"));
 	}
 	
+	/**
+	 * 删除拼桌用户id和餐馆id
+	 * 
+	 * @param data
+	 * @return
+	 */
+	@RequestMapping("deleteShareTableUser")
+	@ResponseBody
+	public String deleteShareTableUser(@RequestBody Map<String, String> data){
+		//System.out.println(data.get("business_name") + "\n" + data.get("user_id"));
+		
+		if(businessService.deleteShareTableUser(data.get("business_name"), data.get("user_id")) == 1){
+	    	Map<String, Object> map = new HashMap<String, Object>();
+	    	map.put("cancelSharedMsg", "succeed");
+	    	String json = MessageEncodeUtil.encode(map);
+	    	return json;
+		}
+		
+    	return null;
+		//return businessService.saveShareTableUser(data.get("business_id"), data.get("user_id"));
+	}
+	
+	/**
+	 * 获取该用户所有拼桌的餐馆，即所有聊天室
+	 * 
+	 * @param user_id
+	 * @return
+	 */
 	@RequestMapping("getChatRooms")
 	@ResponseBody
 	public List<String> getChatRooms(@RequestParam String user_id){
-		System.out.println(user_id);
 		return businessService.getChatRooms(user_id);
+	}
+	
+	/**
+	 * 判断这个餐馆是否被该用户拼桌
+	 * 
+	 * @param data
+	 * @return
+	 */
+	@RequestMapping("ifUserShareBusiness")
+	@ResponseBody
+	public String ifUserShareBusiness(@RequestBody Map<String, String> data){
+		return businessService.ifUserShareBusiness(data.get("business_name"), data.get("user_id"));
 	}
 }

@@ -25,15 +25,23 @@ order by stars desc limit 10;
   
   <!-- $传过来的参数不带单引号 -->
   <select id="selectBusinessByFuzzyQuery" resultType="model.Business">
-  select id,name,address,city,stars,review_count,is_open from business where name like '%${input}%' limit 5;
+  select id,name,address,city,stars,review_count,is_open from business where name like '%${input}%' limit 9;
   </select>
   
   <insert id="insertShareTable" parameterType="map" useGeneratedKeys="true" keyProperty="id" >  
    INSERT INTO share_table VALUES(#{0},#{1});
   </insert>
   
+  <delete id="deleteShareTable" parameterType="map">  
+   DELETE FROM share_table WHERE business_name = #{0} AND user_id = #{1};
+  </delete>
+  
   <select id="selectChatRoomsByUser" resultType="String">
   SELECT business_name FROM share_table WHERE user_id = #{user_id};
+  </select>
+  
+  <select id="selectIfUserShareBusiness" resultType="String">
+  SELECT business_name FROM share_table WHERE business_name = #{business_name} AND user_id = #{user_id};
   </select>
   
 </mapper>

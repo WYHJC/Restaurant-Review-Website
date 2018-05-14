@@ -25,13 +25,14 @@ public class ChatWebSocketHandler implements WebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("用户已添加");
-		String chatRoomName = (String)session.getAttributes().get("chatRoomName");
-		if(chatRooms.get(chatRoomName) == null){
-			createChatRoom(chatRoomName);
+		String chatRoomsTemp = (String)session.getAttributes().get("chatRoomName");
+		String[] chatRoomNames = chatRoomsTemp.split("~");
+		for(String chatRoomName: chatRoomNames){
+			if(chatRooms.get(chatRoomName) == null){
+				createChatRoom(chatRoomName);
+			}
+			chatRooms.get(chatRoomName).add(session);
 		}
-		//System.out.println(chatRoomName);
-		chatRooms.get(chatRoomName).add(session);
 	}
 	
 	@Override
@@ -48,19 +49,28 @@ public class ChatWebSocketHandler implements WebSocketHandler {
 	@Override
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("收到消息");
 		//String chatRoomName = (String)session.getAttributes().get("business_name");
 		//String msg = (String)message.getPayload();
 		Message msg = MessageDecodeUtil.decode((String)message.getPayload());
 		String chatRoomName = msg.getChatRoomName();
 		
 		msg.setTime(new Timestamp(System.currentTimeMillis()));
-		String json = MessageEncodeUtil.encode(msg);		
-		TextMessage tm = new TextMessage(json);
-//		if(msg != null){
-//			System.out.println(msg.getChatRoomName() + "\n" + msg.getContent() + "\n" + msg.getSender() + "\n" + msg.getReceiver() + "\n" + msg.getTime());
-//		}
-		sendMessageToChatRoom(chatRoomName, tm);
+		
+		if(msg.getType().equals("sharetable")){
+			if(chatRooms.get(chatRoomName) == null){
+				createChatRoom(chatRoomName);
+			}
+			chatRooms.get(chatRoomName).add(session);
+		}else if(msg.getType().equals("cancelshare")){
+			chatRooms.get(chatRoomName).remove(session);
+		}else{
+			String json = MessageEncodeUtil.encode(msg);		
+			TextMessage tm = new TextMessage(json);
+//			if(msg != null){
+//				System.out.println(msg.getChatRoomName() + "\n" + msg.getContent() + "\n" + msg.getSender() + "\n" + msg.getReceiver() + "\n" + msg.getTime());
+//			}
+			sendMessageToChatRoom(chatRoomName, tm);
+		}
 	}
 
 	@Override

@@ -27,7 +27,6 @@ public class ChatWebSocketInterceptor implements HandshakeInterceptor {
 			HttpServletRequest httpRequest = servletRequest.getServletRequest();
 			//获取登录用户ID
 			String chatRoomName = (String)httpRequest.getParameter("businessids");
-			System.out.println(chatRoomName);
 			//存入attributes，用于创建WebSocketSession
 			attributes.put("chatRoomName", chatRoomName);
 		}

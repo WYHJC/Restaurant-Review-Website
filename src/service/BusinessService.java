@@ -11,4 +11,6 @@ public interface BusinessService {
 	public List<Business> fuzzyQueryByInput(String input);       //模糊查询
 	public int saveShareTableUser(String business_name, String user_id); //存储拼桌用户id和餐馆id
 	public List<String> getChatRooms(String user_id);   //获取该用户所有聊天室
+	public String ifUserShareBusiness(String business_name, String user_id); //判断这个餐馆是否被该用户拼桌
+	public int deleteShareTableUser(String business_name, String user_id); //删除拼桌用户id和餐馆id
 }

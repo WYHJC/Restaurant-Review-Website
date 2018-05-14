@@ -1,0 +1,12 @@
+/controller/
+/dao/
+/db.properties
+/interceptor/
+/mapper/
+/model/
+/service/
+/serviceImpl/
+/spring-mybatis.xml
+/spring.xml
+/springMVC.xml
+/util/

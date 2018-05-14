@@ -1,3 +1,22 @@
+	function timestampToTime(timestamp) {
+			if(timestamp=='')
+				return '';
+		    var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+		    Y = date.getFullYear() + '-';
+		    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+		    D = date.getDate() + ' ';
+		    h = date.getHours() ;
+		    if(h<10)
+		    	h='0'+h;
+		    m = date.getMinutes() ;
+		    if(m<10)
+		    	m='0'+m;
+		    s = date.getSeconds();
+		    if(s<10)
+		    	s='0'+s;
+		    return Y+M+D+h+':'+m+':'+s;
+		};
+
 (function($){
 	$.fn.tabs = function(options){
 		var def = {
@@ -31,6 +50,7 @@
 			//tab-left
 			tabLeft = el.find('.tab-left')
 			tabRight = el.find('.tab-right')
+			tabDel = el.find('.tab-del')
 		}
 		resfEl()
 
@@ -59,10 +79,12 @@
 			var _this = $(this)
 			parLi = _this.parent().index()
 			
-			var idstr =_this.parent().attr("id");
-				idstr =idstr.substring(5)
+			chatList.splice(parLi,1)
 			
-			removeid(idstr)
+			//var idstr =_this.parent().attr("id");
+				//idstr =idstr.substring(5)
+			
+			//removeid(idstr)
 			//alert(parLi)
 			_this.parent().remove()//remove
 			contIndex.eq(parLi).remove()//remove
@@ -70,6 +92,9 @@
 			resfEl()
 			contIndex.eq(contLiActive.index()).show()
 		})
+		
+		
+		
 
 	
 
@@ -95,7 +120,7 @@
 			contLi.each(function(){
 				contLiWidth += $(this).outerWidth(true)
 			})
-			contScr.css('width',contLiWidth + 2)
+			//contScr.css('width',contLiWidth + 2)
 			console.log(contLiWidth + 2)
 		}
 		
@@ -128,27 +153,19 @@
 		//////////////////////////////////////////////////////////
 		
 		
-		function timestampToTime(timestamp) {
-			if(timestamp=='')
-				return '';
-	        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-	        Y = date.getFullYear() + '-';
-	        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-	        D = date.getDate() + ' ';
-	        h = date.getHours() + ':';
-	        m = date.getMinutes() + ':';
-	        s = date.getSeconds();
-	        return Y+M+D+h+m+s;
-	    }
+		
 		
 		
 		sendButton.on('click',function(){
-			var chatRoomName = el.find('.cont-scroll .active') .attr("id")
-			chatRoomName = chatRoomName.substring(5)
-			if(chatRoomName==""){
+			var chatRoomName = chatList[el.find('.cont-scroll .active') .index()];
+			//alert(chatRoomName)
+			
+			
+			if(chatRoomName==undefined){
 				alert("Not in a chat room!");
 				return;
 			}
+			//chatRoomName = chatRoomName.substring(5)
 			//alert(chatRoomName)
 			var msg = '{"type":"'+'msg'+'","chatRoomName":"'+chatRoomName+'","content":"' + $('#chatInput').val() + '", "sender":"'
 			+ getCookie("user_name") + '", "receiver":""}';
@@ -158,7 +175,12 @@
 		
 		function putMessageIn(chatRoomName,sender,content,time){
 			var date = timestampToTime(time)
-			title = chatRoomName
+				var title
+			//= timestampToTime(time)
+				if(chatRoomName.length>8)
+					title=chatRoomName.substring(0,5)+'...';
+					else
+						title=chatRoomName;
 			sect = "<li class = ''>"+sender+"   "+date+"</li><li class = ''>"+content+"</li>"
 			
 			
@@ -166,10 +188,16 @@
 			if(isInChatList(chatRoomName)==-1){
 				chatList.push(chatRoomName)
 				
-			strLi = "<li id ='title"+title+"'><span>"+title+"</span><a href='javascript:void(0)' class='del'>X</a></li>" 
-			strSec = "<div id ='content"+title+"' class='cont-index'>"+sect+"</div>"
+			strLi = "<li ><span>"+title+"</span><a href='javascript:void(0)' class='del'>X</a></li>" 
+			strSec = "<div  class='cont-index'>"+sect+"</div>"
 			contScr.append(strLi)
 			wrapCont.append(strSec)
+			resfEl()
+			enActive()
+			
+			contLi.eq(contLi.length-1).addClass('active').siblings(this).removeClass('active')
+			contIndex.eq(contLi.length - 1).show().siblings(this).hide()
+			getliWidth()
 			}
 			else{
 				
@@ -177,13 +205,9 @@
 			}
 			//inpTitle.val(inpSect.val(''))
 			
-			resfEl()
-			enActive()
 			
-			contLi.eq(contLi.length-1).addClass('active').siblings(this).removeClass('active')
-			contIndex.eq(contLi.length - 1).show().siblings(this).hide()
-			getliWidth()
 		}
+		
 		
 		function getBusinessTables(){
 			var pathName = document.location.pathname;
@@ -192,7 +216,7 @@
 		    //alert(uid);
 		    
 		 
-
+		    //alert(123);
 			var theUrl="",theData = "";
 			if(uid!="")
 				{
@@ -212,12 +236,13 @@
 						
 						var names='';
 						if(data.length!=0){
+							//alert(3);
 							putMessageIn(data[0],"","","");
 							names+=data[0];
 						
 						for(var i= 1;i<data.length;i++ ){
 							putMessageIn(data[i],"","","");
-							name+='#';
+							names+='~';
 							names+=data[i];
 						}
 						}
@@ -230,7 +255,7 @@
 		
 		function onChating(names){
 			
-			
+			//alert(names);
 			
 			if ('WebSocket' in window) {
 				chatSocket = new WebSocket("ws://" + window.location.host + "/Resturant_Review_Website/ws.do?businessids="+names);
@@ -246,12 +271,121 @@
 			}
 			chatSocket.onmessage = function(evt){
 				var msgObj = JSON.parse(evt.data);
+				//alert('msgObj.chatRoomName  '+msgObj.chatRoomName)
 				putMessageIn(msgObj.chatRoomName,msgObj.sender,msgObj.content,msgObj.time)
 			}
 		}
 		
 		getBusinessTables();
-
+		
+	
+		$('#shareTableButton').on('click',function(){
+			//alert(this.value);
+			if(this.value == "Share Table"){
+				this.value="Cancel Shared";
+				shareTable();
+			}else if(this.value == "Cancel Shared"){
+				//alert("haha");
+				this.value="Share Table";
+				cancelShared();
+			}
+		})
+		
+			function timestampToTime(timestamp) {
+			if(timestamp=='')
+				return '';
+		    var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+		    Y = date.getFullYear() + '-';
+		    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+		    D = date.getDate() + ' ';
+		    h = date.getHours() ;
+		    if(h<10)
+		    	h='0'+h;
+		    m = date.getMinutes() ;
+		    if(m<10)
+		    	m='0'+m;
+		    s = date.getSeconds();
+		    if(s<10)
+		    	s='0'+s;
+		    return Y+M+D+h+':'+m+':'+s;
+		};
+		
+		function shareTable(){
+			if(uid!=""){
+				var pathName = document.location.pathname;
+				var index = pathName.substr(1).indexOf("/");
+				var result = pathName.substr(0,index+1);
+				var bname = data.name.replace(/\+/g, " ");
+				var map = {business_name: bname, user_id: uid};
+				$.ajax({
+					type: "POST",
+					url: result + "/saveShareTableUser.do",
+					contentType: "application/json",
+					data: JSON.stringify(map),
+					dataType: "json",
+					success: function(data1){
+						if(data1.shareTableMsg == 'succeed'){
+							alert("You have successfully shared the table!")
+							var newName = data.name.replace(/\+/g, " ");
+							//alert(newName);
+							
+							putMessageIn(newName,"","","");
+							if(chatSocket==undefined){
+								
+								onChating(newName);
+							}
+							else{
+								var msg = '{"type":"sharetable","chatRoomName":"'+newName+'","content":"", "sender":"", "receiver":""}';
+								chatSocket.send(msg);
+							}
+								
+							
+						}else{
+							alert("Failed to share table!");
+						}
+					},
+					error:function(data1){  
+						//alert(data.regMsg);
+					}
+				});
+			}else{
+				alert("Please login first!")
+			}
+		}
+		
+		function cancelShared(){
+			var pathName = document.location.pathname;
+			var index = pathName.substr(1).indexOf("/");
+			var result = pathName.substr(0,index+1);
+			var bname = data.name.replace(/\+/g, " ");
+			var map = {business_name: bname, user_id: uid};
+			$.ajax({
+				type: "POST",
+				url: result + "/deleteShareTableUser.do",
+				contentType: "application/json",
+				data: JSON.stringify(map),
+				dataType: "json",
+				success: function(data1){
+					if(data1.cancelSharedMsg == 'succeed'){
+						alert("You have already canceled the share!");
+						var newName = data.name.replace(/\+/g, " ");
+						//alert(isInChatList(newName));
+						contDel.eq(isInChatList(newName)).trigger("click"); 
+						var msg = '{"type":"cancelshare","chatRoomName":"'+newName+'","content":"", "sender":"", "receiver":""}';
+						chatSocket.send(msg);
+						
+					}else{
+						alert("Failed to cancel!");
+					}
+				},
+				error:function(data1){  
+					//alert(data.regMsg);
+				}
+			});
+		}
+		
 	}	
 })(jQuery);
+
+
 

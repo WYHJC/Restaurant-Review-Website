@@ -9,6 +9,7 @@ public class Comment {
 	private float stars;
 	private Timestamp date;
 	private String text;
+	private String user_name;
 	
 	public String getID(){
 		return this.id;
@@ -53,5 +54,12 @@ public class Comment {
 	
 	public void setText(String text){
 		this.text = text;
+	}
+	public String getUser_name(){
+		return this.user_name;
+	}
+	
+	public void setUser_name(String user_name){
+		this.user_name = user_name;
 	}
 }

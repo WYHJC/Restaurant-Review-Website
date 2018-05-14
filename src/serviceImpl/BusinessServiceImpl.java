@@ -68,6 +68,17 @@ public class BusinessServiceImpl implements BusinessService{
 	
 	@Override
 	public List<String> getChatRooms(String user_id){
+		
 		return businessDao.selectChatRoomsByUser(user_id);
+	}
+	
+	@Override
+	public String ifUserShareBusiness(String business_name, String user_id){
+		return businessDao.selectIfUserShareBusiness(business_name, user_id);
+	}
+	
+	@Override
+	public int deleteShareTableUser(String business_name, String user_id){
+		return businessDao.deleteShareTable(business_name, user_id);
 	}
 }
